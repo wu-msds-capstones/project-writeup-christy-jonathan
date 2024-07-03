@@ -18,3 +18,4 @@ format:
 {{< include _04_data.qmd >}}
 {{< include _05_results.qmd >}}
 {{< include _06_conclusions.qmd >}}
+{{< include _07_references.qmd >}}
