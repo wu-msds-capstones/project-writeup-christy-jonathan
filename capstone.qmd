@@ -1,6 +1,6 @@
 ---
-title: "Capstone Project"
-subtitle: Subtitle
+title: "Exploring the Barriers to Affordable Housing in Oregon"
+subtitle: "MSDS Capstone Project 2024"
 authors:
   - Christy Lawrence
   - Jonathan McGechie
