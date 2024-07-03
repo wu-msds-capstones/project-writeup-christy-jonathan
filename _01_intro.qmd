@@ -1,1 +1,5 @@
 # Introduction
+For this project we are exploring the barriers that many people in the State of Oregon face when they are looking for affordable housing. We will be exploring various factors that determine if housing prices are affordable or not. We are looking at the median house.
+
+
+Test
