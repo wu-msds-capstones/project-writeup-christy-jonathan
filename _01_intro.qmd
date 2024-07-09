@@ -1,5 +1,24 @@
 # Introduction
-For this project we are exploring the barriers that many people in the State of Oregon face when they are looking for affordable housing. We will be exploring various factors that determine if housing prices are affordable or not. We are looking at the median house.
 
+Affordable housing is a critical issue impacting the well-being of individuals and communities. Despite being recognized as a fundamental human right, access to affordable housing remains a significant challenge in many parts of the United States, including Oregon. This capstone project seeks to investigate the multifaceted barriers to affordable housing in Oregon using data-driven methodologies.
 
-Test
+Project Objectives
+The primary objective of this project is to identify and analyze the key factors contributing to the housing affordability crisis in Oregon. Through the application of statistical analysis and machine learning techniques, we aim to uncover the relationships between various economic, social, and policy-related factors and their impact on housing costs. The insights gained from this analysis will assist policymakers in making informed decisions to improve housing affordability for Oregon residents.
+
+Data Sources and Methodology
+Our analysis will draw on a comprehensive set of data sources, including the Bureau of Labor Statistics, the US Census Bureau, Zillow, Freddie Mac, and others. These sources will provide detailed monthly data on socioeconomic factors, housing permits, mortgage rates, and more for Oregon counties over the past decade. We will organize this data into PostgreSQL databases, ensuring it is optimized for efficient querying and analysis.
+
+The methodology involves several steps:
+1. Data Engineering: Raw data will be processed, cleaned, and stored in structured formats to facilitate analysis.
+2. Exploratory Data Analysis: Initial analysis will identify trends and correlations within the data.
+3. Statistical Analysis: Bivariate and multivariate analyses will be conducted to explore relationships between variables.
+4. Machine Learning: Algorithms such as Random Forest and XGBoost will be used to identify the most influential factors affecting housing affordability.
+5. Data Visualization: Visual tools will be employed to illustrate findings, including maps, bar charts, and line graphs.
+
+Ethical Considerations
+Throughout the project, we will adhere to ethical standards by avoiding bias in data selection and analysis. The data used does not include personally identifiable information, ensuring privacy and confidentiality.
+
+Expected Outcomes
+The project aims to provide a nuanced understanding of the barriers to affordable housing in Oregon. By highlighting the most significant factors contributing to housing costs, our findings will help inform policy decisions aimed at making housing more accessible and affordable for all residents of Oregon.
+
+# Revise/Redo this coming weekend.
