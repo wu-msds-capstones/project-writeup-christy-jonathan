@@ -7,6 +7,8 @@ authors:
 title-block-banner: true
 format: 
   html:
+    toc: true
+    toc-location: left
     theme:
       light: lightly
       dark: darkly
