@@ -1,1 +1,16 @@
 # Methods
+
+Raw data
+--Aggregate to county level to get a more localized look at what is going on
+1.  Looked at linear correlations with pearson correlation and linear regression measuring r^2 and p-value for significance.
+1a. Mann-Kendall Trend - to look for significance of trends in housing and income over our timespan
+2.  Created Linear Model to look at the affects of inventory and housing units on median sales prices.  Tested all
+assumptions of linear regression to ensure the model was accurate.
+3.  Looked at pre-COVID and post-COVID
+
+
+Feature Engineering
+1.  Engineered several features:
+- median monthly payment consisting of average mortgage rate, number of payments (30 years), 80% of the median sale price
+- unaffordability index - ratio of median sale price and median income (used in at least one article found - look up reference)
+

@@ -1,1 +1,6 @@
 # Results
+
+Findings:
+
+1.  Regression fits well to densely populated counties with a median_sale_price target.
+2.  Sparsely populated counties are best modeled by their median rental prices.

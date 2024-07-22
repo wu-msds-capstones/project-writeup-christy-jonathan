@@ -6,3 +6,8 @@
 Some data stuff here...
 
 See @fig-erd for an illustration.
+
+
+Data Dictionary
+- A housing unit is a house, an apartment, a mobile home, a group of rooms, or a single room that is occupied (or if vacant, is intended for occupancy) as separate living quarters. Separate living quarters are those in which the occupants live and eat separately from any other persons in the building and which have direct access from the outside of the building or through a common hall.
+
