@@ -1,24 +1,19 @@
 # Introduction
 
-Affordable housing is a critical issue impacting the well-being of individuals and communities. Despite being recognized as a fundamental human right, access to affordable housing remains a significant challenge in many parts of the United States, including Oregon. This capstone project seeks to investigate the multifaceted barriers to affordable housing in Oregon using data-driven methodologies.
+The right to housing is recognized worldwide in numerous human rights legal documents, including the
+Universal Declaration of Human Rights, which the US signed in 1948.  However, in recent years access
+to affordable housing has become a major obstacle to home ownership and affordable rent across the
+United States.  According to the National Low Income Housing Coalition, “Research shows that
+the shortage of affordable housing costs the American economy about $2 trillion a year in lower
+wages and productivity.”  Due to a large number of interconnected factors over the last 20 years that include rapid population
+growth, strict land use laws, land prices, neighborhood gentrification, interest rates, numerous unique
+issues caused by the COVID pandemic, and increased construction costs and permit fees, many states have
+seen housing affordability dwindle and homelessness grow.
 
-#### Project Objectives
-The primary objective of this project is to identify and analyze the key factors contributing to the housing affordability crisis in Oregon. Through the application of statistical analysis and machine learning techniques, we aim to uncover the relationships between various economic, social, and policy-related factors and their impact on housing costs. The insights gained from this analysis will assist policymakers in making informed decisions to improve housing affordability for Oregon residents.
-
-#### Data Sources and Methodology
-Our analysis will draw on a comprehensive set of data sources, including the Bureau of Labor Statistics, the US Census Bureau, Zillow, Freddie Mac, and others. These sources will provide detailed monthly data on socioeconomic factors, housing permits, mortgage rates, and more for Oregon counties over the past decade. We will organize this data into PostgreSQL databases, ensuring it is optimized for efficient querying and analysis.
-
-##### The methodology involves several steps:
-1. Data Engineering: Raw data will be processed, cleaned, and stored in structured formats to facilitate analysis.
-2. Exploratory Data Analysis: Initial analysis will identify trends and correlations within the data.
-3. Statistical Analysis: Bivariate and multivariate analyses will be conducted to explore relationships between variables.
-4. Machine Learning: Algorithms such as Random Forest and XGBoost will be used to identify the most influential factors affecting housing affordability.
-5. Data Visualization: Visual tools will be employed to illustrate findings, including maps, bar charts, and line graphs.
-
-#### Ethical Considerations
-Throughout the project, we will adhere to ethical standards by avoiding bias in data selection and analysis. The data used does not include personally identifiable information, ensuring privacy and confidentiality.
-
-#### Expected Outcomes
-The project aims to provide a nuanced understanding of the barriers to affordable housing in Oregon. By highlighting the most significant factors contributing to housing costs, our findings will help inform policy decisions aimed at making housing more accessible and affordable for all residents of Oregon.
-
-# Revise/Redo this coming weekend.
+Oregon is experiencing a profound housing crisis characterized by an imbalance between the rapidly increasing
+demand for housing and the availability of affordable housing options. As the state’s population grows,
+particularly in urban centers such as Portland, Eugene, and Bend, the pressure on the housing market has
+intensified, leading to soaring home prices and rental rates. This trend has created significant challenges for
+low- and middle-income families, who are increasingly unable to find affordable housing. The severity of this
+issue calls for a comprehensive analysis of the barriers to affordable housing and the development of effective
+strategies to address them.

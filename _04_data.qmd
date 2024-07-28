@@ -1,9 +1,19 @@
 # Data
 
+## Data Description and Variable Selection
+After conducting thorough research to identify the key factors influencing housing prices, we collected data from various reputable sources. The dataset for this project comprises housing data from Redfin.com, demographic data from the U.S. Census Bureau, median rental prices from the U.S. Department of Housing and Urban Development’s Office of Policy Development and Research (PD&R), and national mortgage rates from The Federal Reserve Bank of St. Louis. The specific features included in our dataset are detailed in the subsequent data section.
+
+
+
+The data for this project were downloaded from various web sites as CSV files.  These files were processed both by hand
+and using Python scripts to remove extraneous information such as data we were not interested in and states and counties
+we were not interested in.  The CSV data were then transposed into a format for ingestion by an SQL script.
+
+
 ![Data ERD](images/data/erd.png){#fig-erd}
 
 
-Some data stuff here...
+
 
 See @fig-erd for an illustration.
 
@@ -11,3 +21,56 @@ See @fig-erd for an illustration.
 Data Dictionary
 - A housing unit is a house, an apartment, a mobile home, a group of rooms, or a single room that is occupied (or if vacant, is intended for occupancy) as separate living quarters. Separate living quarters are those in which the occupants live and eat separately from any other persons in the building and which have direct access from the outside of the building or through a common hall.
 
+
+::: {.callout-note collapse="true"}
+## Data Dictionary - Features Aggregated Monthly By County - Click to Expand
+| Feature              	| Description                                                                                                                                                                                                 	| Source
+|----------------------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|--------	|
+| county               	| Oregon county                                                                                                                                                                                               	|
+| date                 	| Date sampled or calculated in yyyy/mm/dd format                                                                                                                                                               | Redfin Data
+| inventory            	| Total number of active listings on the market on the last day of the time period.                                                                                                                           	| Redfin Data
+| median_sale_price    	| The median final sale price of homes that sold during a given time period                                                                                                                                   	| Redfin Data
+| homes_sold           	| Count of closed home sales during a given time period                                                                                                                                                       	| Redfin Data
+| new_listings         	| Total number of homes listed for sale during a given time period                                                                                                                                            	| Redfin Data
+| days_on_market       	| The median number of days homes that went under contract during a given time period spent on the market before going under contract                                                                         	| Redfin Data
+| average_sale_to_list 	| A measurement of how close the typical home's final price was to its original list price.  It is calcualted as an average of the ratio each home sold during a given period price divided by its list price 	| Redfin Data
+:Data Dictionary - Redfin Data, Monthly By County
+
+
+## Data Dictionary - Features Aggregated Yearly By County - Click to Expand
+| Feature              	| Description                                           	| Source |
+|----------------------	|---------------------------------------------------------	|--------|
+| county               	| Oregon county                                             |  |
+| year                	| Date sampled or calculated in yyyy/mm/dd format           |  |
+| median_income         |                                                           |   |
+| median_rent_2bdrm    	|                                                           |   |
+| num_housing_units           	        |                                           |   |
+| population         	            |                                                |   |
+| rental_vacancy        |                                                            |   |
+| property_tax          |                                                            |   |
+:Data Dictionary - U.S Census and Yearly By County
+:::
+
+::: {.callout-note collapse="true"}
+## Data Dictionary - Features Aggregated Yearly By County - Click to Expand
+| Feature              	| Description                                           	| Source |
+|----------------------	|---------------------------------------------------------	|--------|
+| county               	| Oregon county                                             |  |
+| year                	| Date sampled or calculated in yyyy/mm/dd format           |  |
+| median_income         |                                                           |   |
+| median_rent_2bdrm    	|                                                           |   |
+| num_housing_units           	        |                                           |   |
+| population         	            |                                                |   |
+| rental_vacancy        |                                                            |   |
+| property_tax          |                                                            |   |
+:Data Dictionary -  Yearly By County
+:::
+
+::: {.callout-note collapse="true"}
+## Data Dictionary - Features Aggregated Monthly Average Nationally - Click to Expand
+| Feature              	| Description                                    | Source |
+|----------------------	|-------------------------------------------------|-------|
+| date                	| Date sampled or calculated in yyyy/mm/dd format |        |
+| monthly_average_mortgage_rate           	|                             |        |
+:Data Dictionary -  Yearly By County
+:::

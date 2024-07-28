@@ -52,3 +52,21 @@ What can be/is being done?
 * subsidizing land for affordable housing
 * rent control
 *
+
+
+We wanted to understand the relationship between certain factors (like inventory, population, and mortgage interest rate, for instance)
+and housing prices so that we could present a simple statistical model that might give clues to how much a proposed piece of legislation
+or a new housing development might help or hinder housing affordability.  A common theme we found in our research is that the biggest identified
+factor causing housing affordability today is that Oregon has under-built housing over the last few decades and is now in a position where
+it cannot build fast enough to catch up and meet demand.
+
+The factors around affordable housing are complicated, intertwined, and difficult to fully (or as fully as the imagination allows) obtain
+due to the lack of publicly available data, so there are aspects of affordable housing that we will not be able to account for in any
+model.  For instance, we could not find historical land prices and do not fully understand the entire process/difference between farmland, pasture land,
+buildable land other than each has a different use and there are processes in place to create each type.  Part of expensive housing as to do with
+how much a build has to pay for a lot to build on.  Another piece of the puzzle is how long it takes from start to finish to build a house in an area.  This
+data is just not available.  The faster you can build a new subdivision, the quicker you add inventory and add density to your county - two factors that are
+sometimes in competition for upward and downward pressure on pricing.
+
+Each county has a distinct fingerprint of affordability that makes it distinct from another county and looking at 36 counties is both
+difficult to do and difficult to write up.

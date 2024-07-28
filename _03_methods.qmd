@@ -3,11 +3,12 @@
 The inputs to housing affordability are complex and, often times, intertwined.
 
 #### Project Data Ideation
-The data used for this project, the methods for gathering and cleaning the data, and the storage mechanisms are detailed in the Data section below.
+The data used for this project, the methods for gathering and cleaning the data, and the storage mechanisms are detailed in the [Data](capstone.html#data) section below.
 In this section, we wanted to speak to the lack of publicly available data for housing.  We were able to tie 10 years of Redfin data to few demographic
 and economic indicators, but we had ideas for more features we would like to look into.  Specifically, being able to get housing data farther back than 10 years,
 looking at historical prices for land, costs of construction, and being able to look into just how long it is taking to build housing are just a few missed opportunities
 for our data to have been better filled out.  While researching articles for this project, we created a list of brainstormed data that we then attempted to find on the internet.
+
 
 #### Project Design
 
@@ -58,6 +59,133 @@ curated the responses into a set of features to use to compare to the results of
 | **Supportive Housing**                           | Combines affordable housing with on-site services to help individuals with special needs, such as those experiencing homelessness.      | `median_rent_2bdrm`, `num_housing_units` | `population`, `median_income`                  |
 :::
 
+#### Feature Engineering
+We were able to obtain a number of features related to affordability, including current rental prices, national monthly mortgage rates, median_sales_prices.  These allowed us to
+create new variables specifically targeted to affordability.
+
+###### **Reconciling Monthly and Yearly Data**
+We noticed odd things when we plotted monthly vs yearly data in our scatter plot graphs.  Our data took on clumped column shapes.  And it did really seem representative of what happens in reality.
+A county's median income does not suddently increase from one year to the next, for example.  Many of these variables will be different over smaller increments of time.
+While consulting with our project statistician, Hank Ibser, he suggested that smoothing the transition of the yearly variables by taking the average change and cumulatively increasing
+(or decreasing) the feature amount over the number of months of county data would be a better way to deal with the features than to leave large jumps from year to year.  This left the question
+of what to do with the last year of data, since we do not have numbers beyond 2022.  We decided to average all of the previous deltas and apply that as our step up or down, then
+proceeded to multiply that by the number of months of data we had and apply the incremental steps to the original rows.
+We smoothed out the transitions in this way for the following variables: `median_income`, `population`, `num_housing_units`, `median_rent_2bdrm`, and `rental_vacancy`.
+
+###### **Monthly Housing Payment**: `monthly_housing_payment`
+
+We first created a variable to hold the median monthly mortgage payment, using the following formula:
+
+<center>$$ M = .8P \frac{I(1 + I)^N }{(1 + I)^N − 1} $$ </center>
+
+Where:<br>
+<i>M</i> = `monthly_housing_payment`<br>
+<i>P</i> = home sale price<br>
+<i>I</i> = the interest rate<br>
+<i>N</i> = the number of payments (360)<br>
+
+We made this calculation based on a 20% down payment and a 30 year fixed term.  This is a big assumption, but gives us a baseline to look at affordability.
+
+###### **Monthly Median Income**: `monthly_median_income`
+
+<center>$$ mmi = \frac{mi}{12} $$ </center>
+
+Where:<br>
+<i>mmi</i> = `monthly_median_income`<br>
+<i>mi</i> = `median_income`<br>
+
+
+##### **Monthly Affordable Housing Payment**: `monthly_affordable_housing_payment`
+
+This feature holds the maximum housing payment considered affordable, based on the HUD's affordability threshold of 30%.
+<center>$$ mahp = .3 x mmi $$</center>
+
+Where:<br>
+<i>mahp</i> = `monthly_affordable_housing_payment`<br>
+<i>mmi</i> = `median_income`<br>
+
+#### Rental vs Home Ownership - A Project Decision Point
+The aim of this project was to primarily look into unaffordable housing and housing consists, primarily, of 2 kinds
+of housed individuals:  those who rent and those who own a home.  To decide if we should be focused on both rental unit prices and current home sales, we looked at the
+current strategies and compared those strategies with our data to determine the most immediate need.
+
+##### Evaluation of the current rental situation:
+According to https://ipropertymanagement.com/research/homeownership-rate-by-state?u=%2Fresearch%2Fhomeownership-rate-by-state#oregon,
+about 33% of Oregonians rent, based on the most up-to-date U.S. Census numbers.
+
+```{python}
+import pandas as pd
+import plotly.graph_objs as go
+import plotly.express as px
+from plotly.subplots import make_subplots
+
+# Load the dataset
+file_path = 'housing_engineered.csv'
+housing_data_engineered = pd.read_csv(file_path)
+
+# Convert the date column to datetime format
+housing_data_engineered['date'] = pd.to_datetime(housing_data_engineered['date'])
+
+# Get unique list of counties
+counties = housing_data_engineered['county'].unique()
+
+# Create initial figure
+fig = make_subplots()
+
+# Add traces for the initial county (first county in the list)
+initial_county_data = housing_data_engineered[housing_data_engineered['county'] == counties[0]]
+fig.add_trace(go.Scatter(x=initial_county_data['date'], y=initial_county_data['median_rent_2bdrm'], mode='lines', name='Median Rent 2 Bedroom'))
+fig.add_trace(go.Scatter(x=initial_county_data['date'], y=initial_county_data['monthly_affordable_housing_payment'], mode='lines', name='Monthly Affordable Housing Payment'))
+
+# Update plot sizing
+fig.update_layout(
+    template="plotly_white",
+)
+
+# Update layout with dropdown
+dropdown_buttons = [
+    {
+        'args': [{'y': [housing_data_engineered[housing_data_engineered['county'] == county]['median_rent_2bdrm'],
+                        housing_data_engineered[housing_data_engineered['county'] == county]['monthly_affordable_housing_payment']],
+                 'x': [housing_data_engineered[housing_data_engineered['county'] == county]['date'],
+                       housing_data_engineered[housing_data_engineered['county'] == county]['date']],
+                 'type': 'scatter'}],
+        'label': county,
+        ''
+        'method': 'update'
+    }
+    for county in counties
+]
+
+layout = dict(
+   buttons = dropdown_buttons,
+   direction =  'down',
+   showactive = True,
+   yanchor="top",
+   y=0.99,
+   xanchor="left",
+   x=0.01
+)
+
+fig.update_layout(
+    updatemenus=[
+        layout
+    ]
+)
+
+# Update axis labels and title
+fig.update_layout(
+    title='Oregon County Rentals have Managed to Stay Affordable</i>',
+    xaxis_title='Date',
+    yaxis_title='Monthly Rental Payment (U.S. Dollars)',
+)
+
+# Show the plot
+fig.show()
+```
+
+
+<br><br>
 ##### 2. Data Exploration and Analysis
 Utilizing publicly available datasets, we undertook the following statistical analysis:
 
