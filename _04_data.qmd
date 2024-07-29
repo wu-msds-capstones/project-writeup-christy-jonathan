@@ -155,7 +155,7 @@ Where:<br>
 <i>mmi</i> = `monthly_median_income`<br>
 <i>mi</i> = `median_income`<br>
 
-##### **Monthly Affordable Housing Payment**: `monthly_affordable_housing_payment`
+###### **Monthly Affordable Housing Payment**: `monthly_affordable_housing_payment`
 
 This feature holds the maximum housing payment considered affordable, based on the HUD's affordability threshold of 30%.
 <div text-align="center">

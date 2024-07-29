@@ -1,5 +1,12 @@
 # Results
 
+Add a list of values that came out of the strategy goal data search.
+
+Add scatter plots and correlation tables
+
+
+
+
 Findings:
 
 1.  Regression fits well to densely populated counties with a median_sale_price target.
