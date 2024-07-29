@@ -1,72 +1,27 @@
 # Background
 
-The right to housing is recognized worldwide in numerous human rights legal documents, including the
-Universal Declaration of Human Rights, which the US signed in 1948.  However, in recent years access
-to affordable housing has become a major obstacle to home ownership and affordable rent across the
-United States.  According to the National Low Income Housing Coalition, “Research shows that
-the shortage of affordable housing costs the American economy about $2 trillion a year in lower
-wages and productivity.”  Due to a large number of interconnected factors over the last 20 years that include rapid population
-growth, strict land use laws, land prices, neighborhood gentrification, interest rates, numerous unique
-issues caused by the COVID pandemic, and increased construction costs and permit fees, many states have
-seen housing affordability dwindle and homelessness grow.
+Oregon is currently grappling with a significant housing crisis marked by a mismatch between the growing demand for housing and the availability of affordable housing options. This crisis has been exacerbated by a combination of rapid population growth, economic factors, and regulatory constraints. Understanding and addressing the barriers to affordable housing in Oregon is essential for developing effective strategies that can balance housing demand with affordability.
 
-Unaffordable housing has many impacts on the people it affects, which include:  1) having to commute to
-work from an area they find more affordable, contributing to air pollution,  2) inability to save for
-emergencies, creating a precarious situation in the event an expensive emergency does arise,  3) inability
-to save for retirement or their children’s future,  4) physical and emotional stress over finances, and
-5) greater likelihood of the homeless population growing due to lack of housing options.
+#### Population Growth and Housing Demand
+Oregon's population has been growing steadily over the past decade. According to the U.S. Census Bureau, the state experienced a population increase of approximately 10.6% from 2010 to 2020 (U.S. Census Bureau, 2021). This growth has been concentrated in urban areas such as Portland, Eugene, and Bend, leading to increased demand for housing in these regions. As more people move to these urban centers for job opportunities and quality of life, the pressure on the housing market intensifies, driving up home prices and rental rates.
 
-##### Oregon, the Poster Child of Unaffordable Housing
-The reasons for housing becoming less affordable over time are complex, but in Oregon, a number of papers tie the
-passage to SB-100 in 1973 to an increasingly restrictive building environment.  Restrictive land use policies
-slow development and increase land costs and create a crisis when demand rises in an area.
+#### Economic Factors
+The economic landscape in Oregon has also contributed to the housing affordability crisis. Rising construction costs, driven by increasing prices for labor and materials, have made it more expensive to build new housing units (National Association of Home Builders, 2021). Additionally, land prices in desirable urban areas have surged, further compounding the cost of housing development (Glaeser & Gyourko, 2018). These economic factors create significant barriers for developers seeking to build affordable housing.
 
-"It’s tempting to oversimplify how Oregon’s housing market failed to keep up with demand. Some people blame the state’s
-stringent land-use laws for restricting the ability to expand where new construction could go. Others blame the
-private sector’s control of real estate, or developers who only want to build large single-family homes, or
-bureaucratic permitting processes."
-"Lewis is among several researchers who have been digging into studies and data to help policymakers figure out how
-Oregon reached a point of being 140,000 housing units short of what’s needed — and what it will take to dig the state
-out of this hole." - https://www.opb.org/article/2023/07/26/oregon-cost-of-living-housing-construction-building-land-use-high-rent/
+#### Regulatory and Policy Barriers
+Regulatory constraints, such as zoning laws and land use regulations, play a critical role in shaping the housing market in Oregon. Urban growth boundaries, while designed to prevent urban sprawl and protect natural landscapes, have limited the availability of developable land, thereby increasing housing costs (Phillips & Goodstein, 2000). Furthermore, restrictive zoning laws often favor single-family homes over higher-density developments, reducing the potential supply of affordable housing options (Pendall, 2020).
 
-##### Coming to Terms With Past Mistakes
+#### Strategies to Address Housing Affordability
+Various strategies have been proposed and implemented in Oregon to address the housing affordability crisis. Inclusionary zoning policies, for example, require or incentivize developers to include affordable units in new residential projects. The City of Portland has adopted such policies, aiming to increase the availability of affordable housing within new developments (City of Portland, 2017).
 
-##### The COVID Pandemic Strikes Another Blow to Affordability
+State-level legislation, such as Oregon's House Bill 2001, seeks to promote higher-density housing by allowing the construction of duplexes, triplexes, and fourplexes in areas previously zoned for single-family homes (Oregon Legislature, 2019). This approach is intended to increase the housing supply and provide more affordable options.
 
-https://www.wweek.com/news/2023/10/27/oregons-housing-production-shortage-among-nations-worst/
+Public-private partnerships are another critical strategy, leveraging public funds and private sector expertise to finance and build affordable housing projects. For instance, the Portland Housing Bond, a voter-approved initiative, aims to create 1,300 new affordable housing units in the city (City of Portland, 2021).
 
-https://cascadepolicy.org/tax-and-budget/whats-causing-oregons-housing-affordability-crisis/
+Innovative construction methods, including modular and prefabricated housing, offer potential solutions to reduce construction costs and increase the speed of housing production. These methods are being explored in Oregon as a way to address the housing shortage more effectively (Smith, 2021).
 
-### Add more historical information and why looking at the factors we're looking at will give us a good idea about housing prices
-
-* Land-use restrictions
-* Housing developer fees
-* Property taxes
-*
-
-What can be/is being done?
-
-* Easing land use
-* stretching urban boundaries
-* subsidizing fees for affordable housing
-* subsidizing land for affordable housing
-* rent control
-*
-
-
-We wanted to understand the relationship between certain factors (like inventory, population, and mortgage interest rate, for instance)
-and housing prices so that we could present a simple statistical model that might give clues to how much a proposed piece of legislation
-or a new housing development might help or hinder housing affordability.  A common theme we found in our research is that the biggest identified
-factor causing housing affordability today is that Oregon has under-built housing over the last few decades and is now in a position where
-it cannot build fast enough to catch up and meet demand.
-
-The factors around affordable housing are complicated, intertwined, and difficult to fully (or as fully as the imagination allows) obtain
-due to the lack of publicly available data, so there are aspects of affordable housing that we will not be able to account for in any
-model.  For instance, we could not find historical land prices and do not fully understand the entire process/difference between farmland, pasture land,
-buildable land other than each has a different use and there are processes in place to create each type.  Part of expensive housing as to do with
-how much a build has to pay for a lot to build on.  Another piece of the puzzle is how long it takes from start to finish to build a house in an area.  This
-data is just not available.  The faster you can build a new subdivision, the quicker you add inventory and add density to your county - two factors that are
-sometimes in competition for upward and downward pressure on pricing.
-
-Each county has a distinct fingerprint of affordability that makes it distinct from another county and looking at 36 counties is both
-difficult to do and difficult to write up.
+#### Research Objectives
+This study aims to explore the barriers to affordable housing in Oregon by analyzing a comprehensive dataset that includes various economic 
+and demographic factors and comparing those to key strategies that are used around the world to tackle housing affordability. By identifying
+some key factors that influence affordability, the study seeks to provide some insight for policymakers, developers, and community stakeholders into what
+strategies hold some promise at taming the affordability crisis.

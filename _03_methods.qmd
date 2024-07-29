@@ -2,118 +2,22 @@
 
 The inputs to housing affordability are complex and, often times, intertwined.
 
-#### Project Data Ideation
-The data used for this project, the methods for gathering and cleaning the data, and the storage mechanisms are detailed in the [Data](capstone.html#data) section below.
-In this section, we wanted to speak to the lack of publicly available data for housing.  We were able to tie 10 years of Redfin data to few demographic
-and economic indicators, but we had ideas for more features we would like to look into.  Specifically, being able to get housing data farther back than 10 years,
-looking at historical prices for land, costs of construction, and being able to look into just how long it is taking to build housing are just a few missed opportunities
-for our data to have been better filled out.  While researching articles for this project, we created a list of brainstormed data that we then attempted to find on the internet.
-
-
-#### Project Design
-
-##### 1. Research and Identification of Core Strategies
-We commenced by conducting a comprehensive review of current strategies employed to address housing affordability. This
-review focused on identifying the fundamental objectives these strategies aimed to achieve, such as increasing housing inventory,
-stabilizing rental prices, and enhancing accessibility for low-income households.  The result of this review is a list of strategies
-with their intended goal, seen in the dropdown below.  Using this strategy-goal list, we asked both Anthropic's Claude AI and OpenAI's
-ChatGPT to analyze our dataset and to tag each strategy goal with both direct and indirect associations to the dataset features.  We then
-curated the responses into a set of features to use to compare to the results of our analysis.
-
-
-::: {.callout-caution collapse="true"}
-## Anthropic Claud AI feature tagging - Click to Expand
-| Strategy | Goal | Relevant Dataset Features | Indirect Associations |
-|----------|------|---------------------------|------------------------|
-| **Inclusionary Zoning** | Increase affordable housing stock in new developments | None directly | `new_listings`, `num_housing_units`, `median_sale_price` (potential long-term decrease) |
-| **Density Bonuses** | Incentivize developers to include affordable housing | `num_housing_units`| `new_listings`, `inventory`, `homes_sold` |
-| **Tax Increment Financing (TIF)** | Finance affordable housing without raising taxes | None directly | `median_sale_price`, `num_housing_units`, `new_listings` |
-| **Low-Income Housing Tax Credits (LIHTC)**| Incentivize private investment in affordable rental housing | `median_sale_price`, `num_housing_units` | `new_listings`, `inventory`, `median_rent_2bdrm` |
-| **Community Land Trusts (CLTs)**| Maintain long-term affordability of housing | None directly | `median_sale_price` (potentially lower in CLT areas), `homes_sold` |
-| **Public-Private Partnerships**| Efficiently develop affordable housing | None directly | `new_listings`, `num_housing_units`, `homes_sold` |
-| **Rent Control and Stabilization**| Protect tenants from sudden rent increases | median_rent_2bdrm | `inventory` (potentially lower), `days_on_market` (potentially higher) |
-| **Accessory Dwelling Units (ADUs)**| Increase affordable rental supply and homeowner income | `num_housing_units` | `new_listings`, `inventory`, `median_rent_2bdrm` |
-| **Housing Vouchers**| Make private market rentals affordable for low-income households | `median_rent_2bdrm`, `homes_sold` | `inventory`, `days_on_market`, `average_sale_to_list` |
-| **Streamlining Permitting and Reducing Regulations**| Encourage more housing construction, including affordable units | `new_listings`, `homes_sold` | `num_housing_units`, `inventory`, `days_on_market` (potentially lower) |
-| **Land Banking**| Control land for future affordable housing development | None directly | `new_listings` (future increase), `num_housing_units` (future increase) |
-| **Increased Funding for Affordable Housing Programs**| Support construction and maintenance of affordable units | `median_sale_price`, `homes_sold`, `num_housing_units` | `new_listings`, `inventory`, `median_rent_2bdrm` |
-| **Supportive Housing**| Provide stable housing and services for vulnerable populations | None directly | `homes_sold` (slight increase), `median_sale_price` (potential local impact) |
-:::
-
-::: {.callout-caution collapse="true"}
-## OpenAI ChatGPT feature tagging - Click to Expand
-| **Goal**                                         | **Explanation**                                                                                                                        | **Relevant Features**                    | **Indirect Features**                          |
-|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|------------------------------------------------|
-| **Inclusionary Zoning**                          | Policies require developers to include affordable housing units in new projects.                                                       | `new_listings`, `inventory`, `median_rent_2bdrm` | `median_sale_price`, `median_income`           |
-| **Density Bonuses**                              | Developers can build more units than normally allowed in exchange for including affordable housing units.                               | `new_listings`, `num_housing_units`      | `population`, `median_income`                  |
-| **Tax Increment Financing (TIF)**                | Uses future gains in property taxes to finance current improvements, such as affordable housing developments.                           | `median_sale_price`, `median_income`     | `homes_sold`, `population`                     |
-| **Low-Income Housing Tax Credits (LIHTC)**       | Provides tax credits to private developers for building or rehabilitating affordable rental housing.                                    | `median_rent_2bdrm`, `num_housing_units` | `population`, `days_on_market`                 |
-| **Community Land Trusts (CLTs)**                 | Nonprofit organizations acquire and hold land to ensure it remains affordable for housing.                                              | `median_sale_price`, `median_rent_2bdrm` | `days_on_market`, `inventory`                  |
-| **Public-Private Partnerships**                  | Collaboration between government agencies and private developers to create affordable housing projects.                                 | `new_listings`, `num_housing_units`      | `median_income`, `median_sale_price`           |
-| **Rent Control and Stabilization**               | Limits the amount by which rents can increase annually.                                                                                 | `median_rent_2bdrm`                      | `median_income`, `homes_sold`                  |
-| **Accessory Dwelling Units (ADUs)**              | Smaller, independent residential units located on the same lot as a single-family home.                                                 | `new_listings`, `num_housing_units`      | `population`, `median_income`                  |
-| **Housing Vouchers**                             | Programs like Section 8 provide subsidies to low-income households to help them afford rental housing in the private market.            | `median_rent_2bdrm`                      | `population`, `days_on_market`                 |
-| **Streamlining Permitting and Reducing Regulations** | Simplifying the permitting process and reducing unnecessary regulations can lower the cost and time required to build housing.          | `days_on_market`, `new_listings`, `num_housing_units` | `population`, `median_sale_price`              |
-| **Land Banking**                                 | Land banks acquire, hold, and manage vacant or underutilized land for future development of affordable housing.                         | `num_housing_units`, `new_listings`      | `population`, `median_income`                  |
-| **Increased Funding for Affordable Housing Programs** | Increasing funding for affordable housing programs can support the construction and maintenance of affordable units.                     | `num_housing_units`, `new_listings`, `median_rent_2bdrm` | `population`, `days_on_market`                 |
-| **Supportive Housing**                           | Combines affordable housing with on-site services to help individuals with special needs, such as those experiencing homelessness.      | `median_rent_2bdrm`, `num_housing_units` | `population`, `median_income`                  |
-:::
-
-#### Feature Engineering
-We were able to obtain a number of features related to affordability, including current rental prices, national monthly mortgage rates, median_sales_prices.  These allowed us to
-create new variables specifically targeted to affordability.
-
-###### **Reconciling Monthly and Yearly Data**
-We noticed odd things when we plotted monthly vs yearly data in our scatter plot graphs.  Our data took on clumped column shapes.  And it did really seem representative of what happens in reality.
-A county's median income does not suddently increase from one year to the next, for example.  Many of these variables will be different over smaller increments of time.
-While consulting with our project statistician, Hank Ibser, he suggested that smoothing the transition of the yearly variables by taking the average change and cumulatively increasing
-(or decreasing) the feature amount over the number of months of county data would be a better way to deal with the features than to leave large jumps from year to year.  This left the question
-of what to do with the last year of data, since we do not have numbers beyond 2022.  We decided to average all of the previous deltas and apply that as our step up or down, then
-proceeded to multiply that by the number of months of data we had and apply the incremental steps to the original rows.
-We smoothed out the transitions in this way for the following variables: `median_income`, `population`, `num_housing_units`, `median_rent_2bdrm`, and `rental_vacancy`.
-
-###### **Monthly Housing Payment**: `monthly_housing_payment`
-
-We first created a variable to hold the median monthly mortgage payment, using the following formula:
-
-<center>$$ M = .8P \frac{I(1 + I)^N }{(1 + I)^N − 1} $$ </center>
-
-Where:<br>
-<i>M</i> = `monthly_housing_payment`<br>
-<i>P</i> = home sale price<br>
-<i>I</i> = the interest rate<br>
-<i>N</i> = the number of payments (360)<br>
-
-We made this calculation based on a 20% down payment and a 30 year fixed term.  This is a big assumption, but gives us a baseline to look at affordability.
-
-###### **Monthly Median Income**: `monthly_median_income`
-
-<center>$$ mmi = \frac{mi}{12} $$ </center>
-
-Where:<br>
-<i>mmi</i> = `monthly_median_income`<br>
-<i>mi</i> = `median_income`<br>
-
-
-##### **Monthly Affordable Housing Payment**: `monthly_affordable_housing_payment`
-
-This feature holds the maximum housing payment considered affordable, based on the HUD's affordability threshold of 30%.
-<center>$$ mahp = .3 x mmi $$</center>
-
-Where:<br>
-<i>mahp</i> = `monthly_affordable_housing_payment`<br>
-<i>mmi</i> = `median_income`<br>
-
-#### Rental vs Home Ownership - A Project Decision Point
+#### Rental vs Home Ownership - An Early Project Decision Point
 The aim of this project was to primarily look into unaffordable housing and housing consists, primarily, of 2 kinds
 of housed individuals:  those who rent and those who own a home.  To decide if we should be focused on both rental unit prices and current home sales, we looked at the
-current strategies and compared those strategies with our data to determine the most immediate need.
+current affordability strategies and compared them with our data to determine the most immediate need.
 
 ##### Evaluation of the current rental situation:
-According to https://ipropertymanagement.com/research/homeownership-rate-by-state?u=%2Fresearch%2Fhomeownership-rate-by-state#oregon,
-about 33% of Oregonians rent, based on the most up-to-date U.S. Census numbers.
+About 33% of Oregonians rent, based on the most up-to-date U.S. Census numbers (Oregon’s Homeownership Rate, n.d.).  We evaluated, `median_rent_2bdrm` vs `monthly_affordable_housing_payment` county-by-county
+to assess whether Oregonians are paying an unaffordable amount of rent each month.  You can see in the graph below that rental prices sit comfortably under the maximum affordable threshold.  Becuase of this, we decided to focus
+on home sale prices for the rest of our analysis.
+<br><br><br>
 
 ```{python}
+#| label: fig-rent-affordability
+#| fig-cap: "Median rent for a 2 bedroom vs Maximum affordable housing price"
+
+
 import pandas as pd
 import plotly.graph_objs as go
 import plotly.express as px
@@ -185,9 +89,79 @@ fig.show()
 ```
 
 
+#### Project Design
+
+##### 1. Research and Identification of Core Strategies
+We began by conducting a comprehensive review of current strategies employed to address housing affordability. This
+review focused on identifying the fundamental objectives these strategies aimed to achieve, such as increasing housing inventory,
+stabilizing rental prices, and enhancing accessibility for low-income households.  The result of this review is a list of strategies
+with their intended goal, seen in the dropdown below.  Using this strategy-goal list, we asked both Anthropic's Claude AI and OpenAI's
+ChatGPT to analyze our dataset and to tag each strategy goal with both direct and indirect associations to the dataset features.  We then
+curated the responses into a set of features to use to compare to the results of our analysis.
+
+::: {.callout-note collapse="true"}
+## Strategy Goal List - Click to Expand
+| **Goal**                                         | **Explanation**                                                                                                                        | 
+|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Inclusionary Zoning**                          | Policies require developers to include affordable housing units in new projects.                                                       |
+| **Density Bonuses**                              | Developers can build more units than normally allowed in exchange for including affordable housing units.                               |
+| **Tax Increment Financing (TIF)**                | Uses future gains in property taxes to finance current improvements, such as affordable housing developments.                           |
+| **Low-Income Housing Tax Credits (LIHTC)**       | Provides tax credits to private developers for building or rehabilitating affordable rental housing.                                    |
+| **Community Land Trusts (CLTs)**                 | Nonprofit organizations acquire and hold land to ensure it remains affordable for housing.                                              | 
+| **Public-Private Partnerships**                  | Collaboration between government agencies and private developers to create affordable housing projects.                                 |
+| **Rent Control and Stabilization**               | Limits the amount by which rents can increase annually.                                                                                 |
+| **Accessory Dwelling Units (ADUs)**              | Smaller, independent residential units located on the same lot as a single-family home.                                                 |
+| **Housing Vouchers**                             | Programs like Section 8 provide subsidies to low-income households to help them afford rental housing in the private market.            |
+| **Streamlining Permitting and Reducing Regulations** | Simplifying the permitting process and reducing unnecessary regulations can lower the cost and time required to build housing.          |
+| **Land Banking**                                 | Land banks acquire, hold, and manage vacant or underutilized land for future development of affordable housing.                         |
+| **Increased Funding for Affordable Housing Programs** | Increasing funding for affordable housing programs can support the construction and maintenance of affordable units.                     |
+| **Supportive Housing**                           | Combines affordable housing with on-site services to help individuals with special needs, such as those experiencing homelessness.      |
+:::
+
+::: {.callout-note collapse="true"}
+## Anthropic Claud AI feature tagging - Click to Expand
+### Goals and Associated Features in the Dataset
+| Goal | Directly Associated Features | Indirectly Associated Features |
+|------|------------------------------|--------------------------------|
+| Increase affordable housing stock | `inventory`, `new_listings` | `median_sale_price`, `homes_sold` |
+| Encourage affordable housing development | `new_listings` | `median_sale_price`, `inventory` |
+| Fund affordable housing projects | N/A | `median_income`, `property_tax` |
+| Incentivize private investment in affordable housing | N/A | `new_listings`, `homes_sold` |
+| Maintain long-term affordability | N/A | `median_sale_price`, `average_sale_to_list` |
+| Develop affordable housing efficiently | `new_listings`, `days_on_market` | `inventory` |
+| Protect tenants from rent increases | N/A | `median_rent_2bdrm`, `median_income` |
+| Increase affordable rental supply | `inventory`, `new_listings` | `median_rent_2bdrm`, `rental_vacancy` |
+| Subsidize housing for low-income families | N/A | `median_income`, `median_rent_2bdrm` |
+| Encourage more housing construction | `new_listings`, `homes_sold` | `inventory`, `days_on_market` |
+| Ensure land use for affordable housing | N/A | `inventory`, `new_listings` |
+| Support affordable housing programs | N/A | `median_income`, `population` |
+| Provide housing and services for vulnerable populations | N/A | `population`, `median_income` |
+:::
+
+::: {.callout-note collapse="true"}
+## OpenAI ChatGPT feature tagging - Click to Expand
+### Goals and Associated Features in the Dataset
+
+| Goal Description                                 | Directly Associated Features                        | Indirectly Associated Features                     |
+|--------------------------------------------------|----------------------------------------------------|---------------------------------------------------|
+| **Inclusionary Zoning**                          | `median_rent_2bdrm`, `median_sale_price`            | `num_housing_units`, `population`, `median_income` |
+| **Density Bonuses**                              | `median_rent_2bdrm`, `median_sale_price`            | `new_listings`, `homes_sold`, `num_housing_units`  |
+| **Tax Increment Financing (TIF)**                | `property_tax`, `median_sale_price`                 | `median_income`, `population`, `num_housing_units` |
+| **Low-Income Housing Tax Credits (LIHTC)**       | `median_rent_2bdrm`, `median_sale_price`            | `median_income`, `population`, `num_housing_units` |
+| **Community Land Trusts (CLTs)**                 | `median_rent_2bdrm`, `median_sale_price`            | `num_housing_units`, `median_income`, `population` |
+| **Public-Private Partnerships**                  | `median_rent_2bdrm`, `median_sale_price`            | `homes_sold`, `new_listings`, `num_housing_units`  |
+| **Rent Control and Stabilization**               | `median_rent_2bdrm`                                 | `median_income`, `population`, `num_housing_units` |
+| **Accessory Dwelling Units (ADUs)**              | `median_rent_2bdrm`, `median_sale_price`            | `new_listings`, `num_housing_units`                |
+| **Housing Vouchers**                             | `median_rent_2bdrm`                                 | `median_income`, `population`, `num_housing_units` |
+| **Streamlining Permitting and Reducing Regulations** | `new_listings`, `homes_sold`                        | `num_housing_units`, `median_rent_2bdrm`, `median_sale_price` |
+| **Land Banking**                                 | `num_housing_units`, `median_sale_price`            | `population`, `median_income`                      |
+| **Increased Funding for Affordable Housing Programs** | `median_rent_2bdrm`, `median_sale_price`            | `num_housing_units`, `median_income`, `population` |
+| **Supportive Housing**                           | `median_rent_2bdrm`, `median_sale_price`            | `median_income`, `population`, `num_housing_units` |
+:::
+
 <br><br>
 ##### 2. Data Exploration and Analysis
-Utilizing publicly available datasets, we undertook the following statistical analysis:
+
 
 ### Fill this out with python used, specific tests run
 

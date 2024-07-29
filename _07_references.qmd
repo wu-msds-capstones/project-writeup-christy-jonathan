@@ -1,1 +1,31 @@
 # Reference
+
+Oregon’s Homeownership Rate. (n.d.). https://ipropertymanagement.com/research/homeownership-rate-by-state?u=%2Fresearch%2Fhomeownership-rate-by-state#oregon.
+
+City of Portland. (2017). Inclusionary Housing. Retrieved from City of Portland website
+
+City of Portland. (2021). Portland Housing Bond. Retrieved from City of Portland website
+
+Glaeser, E. L., & Gyourko, J. (2018). The Economic Implications of Housing Supply. Journal of Economic Perspectives, 32(1), 3-30.
+
+National Association of Home Builders. (2021). The Economic Impact of Home Building in Oregon. Retrieved from NAHB website
+
+Oregon Legislature. (2019). House Bill 2001. Retrieved from Oregon Legislature website
+
+Phillips, J., & Goodstein, E. (2000). Growth Management and Housing Prices: The Case of Portland, Oregon. Contemporary Economic Policy, 18(3), 334-344.
+
+Pendall, R. (2020). From Zoning to Smart Growth. In E. S. Belsky, & N. P. Retsinas (Eds.), Revisiting Rental Housing: Policies, Programs, and Priorities. Brookings Institution Press.
+
+Smith, R. E. (2021). Off-Site and Modular Construction Explained. London: Taylor & Francis.
+
+U.S. Census Bureau. (2021). QuickFacts: Oregon. Retrieved from U.S. Census Bureau website
+
+Zillow. (2021). Portland Home Prices & Values. Retrieved from Zillow website
+
+U.S. Census Bureau. HOUSING UNITS. American Community Survey, ACS 5-Year Estimates Detailed Tables, Table B25001. Retrieved July 28, 2024, from https://data.census.gov/table/ACSDT5Y2019.B25001?q=number of housing units in oregon counties.
+
+U.S. Census Bureau. "COMPARATIVE HOUSING CHARACTERISTICS." American Community Survey, ACS 5-Year Estimates Comparison Profiles, Table CP04, https://data.census.gov/table/ACSCP5Y2019.CP04?q=CP04 oregon counties. Accessed on July 28, 2024.
+
+U.S. Census Bureau. "MORTGAGE STATUS BY MEDIAN REAL ESTATE TAXES PAID (DOLLARS)." American Community Survey, ACS 5-Year Estimates Detailed Tables, Table B25103, https://data.census.gov/table/ACSDT1Y2019.B25103?q=B25103 oregon counties. Accessed on July 28, 2024.
+
+U.S. Census Bureau. "INCOME IN THE PAST 12 MONTHS (IN 2011 INFLATION-ADJUSTED DOLLARS) ." American Community Survey, ACS 5-Year Estimates Subject Tables, Table S1901, https://data.census.gov/table/ACSST1Y2011.S1901?q=median household income in oregon counties. Accessed on July 28, 2024.
