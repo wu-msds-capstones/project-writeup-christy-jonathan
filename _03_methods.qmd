@@ -92,20 +92,26 @@ fig.show()
 
 ##### Summary of Strategy
 
-In this study, we sought to identify dataset features associated with a set of researched housing strategies. First, we curated a list of relevant features and then narrowed it down by identifying those with the highest percentages of housing transactions that show significant linear associations with median sale prices. Next, we fitted linear models for each county to assess how these factors influence housing prices and in what direction.
+In this study, we sought to identify dataset features associated with a set of researched housing strategies. First, 
+we curated a list of relevant features and then narrowed it down by identifying those with the highest percentages of 
+housing transactions that show significant linear associations with median sale prices. Next, we fitted linear models 
+for each county to assess how these factors influence housing prices and in what direction.
 
-To capture more complex, potentially non-linear relationships, we also employed a random forest machine learning model. This allowed us to evaluate the importance of each feature based on our original list of strategies.
+To capture more complex, potentially non-linear relationships, we also employed a random forest machine learning model. 
+This allowed us to evaluate the importance of each feature based on our original list of strategies.
 
-These methodologies enable us to determine the most critical factors to focus on, such as increasing the housing supply, when formulating housing strategies.
+These methodologies enable us to determine the most critical factors to focus on, such as increasing the housing supply, 
+when formulating housing strategies.
 
 ##### 1. Materials List (Software used) 
 
 	1.  python v3.12.4	
 	2.  sklearn	v1.5.1 for linear regression and random forest
-    3.  SciPy 1.14.0
-	4.  statsmodels v0.14.1 for timeseries analysis
+    3.  SciPy v1.14.0
+	4.  statsmodels v0.14.1
     5.  seaborn v0.13.2, matplotlib v3.9.0, and plotly v5.23.0 for visualizations
-    6.  pandas and numpy for data manipulation
+    6.  pandas v2.2.2 and numpy v2.0 for data manipulation
+    7.  pymannkendall v1.4.3
     7.  OpenAI ChatGPT4 and Anthropic Claude3.5 Sonet
 
 ##### 2. Research and Identification of Core Strategies - A way to refine the dataset to targeted variables
@@ -190,13 +196,33 @@ General observations:
 | Increased Funding for Affordable Housing Programs | Develop, preserve, and subsidize affordable housing                                                  | `median_sale_price`, `homes_sold`, `new_listings`                 | `median_income`, `population`, `property_tax`                  |
 | Supportive Housing                          | Stabilize vulnerable populations                                                                     | `median_sale_price`, `homes_sold`, `new_listings`                 | `median_income`, `population`, `property_tax`                  |
 :::
-[`new_listings`, `inventory`, `median_sale_price`, `num_housing_units`, `median_income`, `population`, `property_tax`, `homes_sold`, `days_on_market` ]
 
 <br>
 
 ##### 3. Data Exploration and Initial Analysis 
 
+###### **Handling Different Types of Data and Choosing an Analysis Dataset**
+
+We have several kinds of features in our dataset at this point:
+
+* Data sourced through public websites
+* Engineered Features
+* Smoothed yearly data
+
+When and how we use this data is an important aspect in our analysis and results.  We found our engineered features to be
+very useful for determining trends and identifying when pricing became unaffordable, but those features were created
+directly from other features in the set, obfuscating the raw data as indicators of housing prices.  We briefly left those
+features in and found their significant correlation with the raw features to be detracting from getting a base-level 
+understanding of what affects housing pricing.
+
+Another important piece of our data is its time series aspect.  For Linear Regression analysis and the Random Forest model,
+this data dimension is removed so that we can focus on what features correlate to housing prices, regardless of time.
+
+After the analysis of the strategy list tagged with feature names, we chose a feature set to move forward and further
+refine using various kinds of correlation.
+
 ###### **Handling Missing Data**
+
 A review of our dataset revealed missing data in the following features: `new_listings`, `inventory`,  `days_on_market`, and `average_sale_to_list`.
 
 A deeper inspection shows these values missing in the more sparsely Oregon counties, where home sales do not necessarily happen every month.  To handle
@@ -204,7 +230,14 @@ these, we decided to fill these with 0 values rather than drop the entire row.
 
 In these sparsely populated counties, there are also fewer rows of home sales due to the fact that there are so few homes that sell in these areas.
 
-###### **Scatter Plots and Correlation and Aggregation by County**
+##### 4. Identification of Significant Features 
+
+###### **Correlation Studies**
+
+Correlation studies gather evidence of association between our feature list and the median house pricing.  In this section, we look at
+scatter plots, trend analysis, and linear regression exploration of each county in Oregon.
+
+* **Scatter Plots**
 
 Since the dataset is sectioned into counties, looking at scatter plots makes most sense when aggregating by counties.  Patterns
 of correlation start to emerge when looking at county-aggregated cross-sections of the dataset.
@@ -212,60 +245,38 @@ of correlation start to emerge when looking at county-aggregated cross-sections 
 Using Pairplot from the Seaborn library, we looked at bivariate scatter plots on the aggregated cross-sections to determine variable associations.  These
 plots give an indications of whether linear regression could be a good first model.
 
-1.  scatter plots, correlation plots, linregress to look for highly correlated data
-2.  trend analysis - list the output used to determine if there is a trend and if it is significant
-3.  feature importance testing - how is this done and what output does it provide
+* **Trend Analysis** 
+
+All of our gathered data is time-series data.  It is important to explore the associated temporal trends in the data to identify 
+what indicators of our feature set are significant and in what direction they are trending.  We used the Mann-Kendall seasonality
+test to measure these trends by county for each feature in our feature set with an association to median sale price.
+
+* **Linregress, a quick fit to measure significance**
+
+We analyzed 36 counties in our dataset to identify which features have a significant association with the number 
+of homes sold in Oregon. We developed an algorithm that uses the linregress from the SciPy Stats library and calculates 
+the sum of the percentages of homes sold in each county where a feature is significant. For example, Washington County 
+accounts for about 15% of all homes sold in Oregon during the period covered by our dataset. If a feature is only significant 
+in Washington County, its representation among all homes sold in Oregon would be 15%. We set a p-value threshold of 0.05 for 
+significance and required that significant features be present in at least 90% of home sales to be considered. See @fig-feature-sig below for more details.
+
+![Feature Significance Representation in Oregon Home Sales](images/sig-feature-representation.png){#fig-feature-sig width=300}
+
+This further refined the set of features that we will consider for a multiple linear regression model.
+
+* **Testing For Multicollinearity**
+
+One thing that might cause a regression analysis to show better than expected results is when the independent features are not so independent with each other.
+Using variance_inflation_factor from the Statsmodels library, we were able to try all combinations of our remaining variables to find viable candidate
+combinations to fit a linear model.
+
+##### 5. Building a Linear Regression Model
 
 
-* **Trend Analysis**: Examined temporal trends in affordability for housing prices to determine to the significance of the problem facing Oregon Counties
-    + Mann-Kendal test for trend significance and direction
-* **Correlation and Significance Testing**: Analyzed feature correlations and performed significance tests to identify key predictors of target variables (rent and median sale price).
 * **Feature Importance Analysis**: Employed the `permutation_importance` function from the `sklearn` library to ascertain the importance of various features. A Random Forest Regressor model was constructed and evaluated to validate these findings.
 
-##### 4. Identification of Significant Features
-We identified the intersection of features with significant linear regression p-values and those deemed most important by the Random Forest model. This intersection provided robust evidence of features that were statistically correlated with housing prices. Subsequently, we compared these features with the strategies identified in the initial research phase to draw meaningful insights.
+##### 5. Building a Random Forest Model
+
 
 ##### 5. Forecasting Housing Prices
 Finally, leveraging the optimal Random Forest model, we developed a time series forecast to predict future housing prices. This predictive model aided in anticipating market trends and formulating effective strategies to enhance housing affordability.
-
-## Stastical Analysis
-Python 3.12.4 was used for data processing, statistical analysis, and plots for this study.  We performed descriptive analysis on the features in this dataset and we noted the lack of data
-in some counties for earlier years.
-
-
-
-Raw data
-
-The first step was to research housing affordability trends in Oregon and determine what steps have been taken to keep housing affordable for Oregonians.
-With this set of approaches, we wanted to identify the specific issues they are trying to solve - are they trying to help builders obtain land and build
-faster?  Rent control?  Subsidies for builders to build more affordably?  We need to make a determination if the features they are trying to solve for
-are represented in our data.  Maybe if they are trying to build up more inventory, num_housing_units or inventory is a good indicator.  Relaxing land use laws
-or stretching the urban barrier seem to be an effort to increase inventory/num_housing_units.
-
-Counties may represent features differently.  Aggregating by county, do scatter plots and linear regression to obtain p-values for each feature
-measured against median_sale_price.  Look for features that are correlated and ensure there is no multicolinearity among them.
-
-Now we have sets of features that represent 99% of the homes sold and are not multicolinear.  Are there common features among them?
-
-
---Aggregate to county level to get a more localized look at what is going on
-The path to take here should probably be looking at several methods of feature importance and try to go with an intersecting set
-of those features.  Build linear regression and a couple of ML models using those features.  If the models work out, we could say that these
-features are significant and could be looked at as factors to take into account when looking into various types legislation.
-
-1.  Looked at linear correlations with pearson correlation and linear regression measuring r^2 and p-value for significance.
-1a. Mann-Kendall Trend - to look for significance of trends in housing and income over our timespan
-2.  Created Linear Model to look at the affects of inventory and housing units on median sales prices.  Tested all
-assumptions of linear regression to ensure the model was accurate.
-3.  Created Random Forest, evaluated for error and accuracy.
-4.  Created a timeseries forecast model using Random Forest.
-
-
-Feature Engineering
-1.  Engineered several features:
-- median monthly payment consisting of average mortgage rate, number of payments (30 years), 80% of the median sale price
-- unaffordability index - ratio of median sale price and median income (used in at least one article found - look up reference)
-
-
-The methods used in this analysis consists of simple stastical analysis for correlations and time series trends, a random forest model, and a random forest model with time series data
-

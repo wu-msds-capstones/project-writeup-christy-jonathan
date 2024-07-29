@@ -1,1 +1,7 @@
 # Conclusions
+
+Our results depend on what kind of counties we are looking at.
+Sparsely populated county home sales are mostly land sales and not at all like the dynamics
+seen in densely populated counties.  A one-fit model is inadequate to cover all Oregon counties.
+
+However, these sparsely populated counties also do not 
