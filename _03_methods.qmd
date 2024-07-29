@@ -88,7 +88,6 @@ fig.update_layout(
 fig.show()
 ```
 
-
 #### Project Design
 
 ##### 1. Research and Identification of Core Strategies
@@ -141,7 +140,6 @@ curated the responses into a set of features to use to compare to the results of
 ::: {.callout-note collapse="true"}
 ## OpenAI ChatGPT feature tagging - Click to Expand
 ### Goals and Associated Features in the Dataset
-
 | Goal Description                                 | Directly Associated Features                        | Indirectly Associated Features                     |
 |--------------------------------------------------|----------------------------------------------------|---------------------------------------------------|
 | **Inclusionary Zoning**                          | `median_rent_2bdrm`, `median_sale_price`            | `num_housing_units`, `population`, `median_income` |
@@ -159,13 +157,25 @@ curated the responses into a set of features to use to compare to the results of
 | **Supportive Housing**                           | `median_rent_2bdrm`, `median_sale_price`            | `median_income`, `population`, `num_housing_units` |
 :::
 
-<br><br>
-##### 2. Data Exploration and Analysis
+<br>
+
+##### 2. Materials (Software and libraries) 
+
+	1.  python v3.12.4	
+	2.  sklearn	v1.5.1 for linear regression and random forest
+	3.  statsmodels v0.14.1 for timeseries analysis
+    4.  matplotlib v3.9.0 and plotly v5.23.0 for visualizations
+    5.  pandas and numpy for data manipulation
+
+##### 3. Data Exploration and Initial Analysis 
 
 
-### Fill this out with python used, specific tests run
+1.  scatter plots and correlation plots to look for highly correlated data - list the values used for significance
+2.  trend analysis - list the output used to determine if there is a trend and if it is significant
+3.  feature importance testing - how is this done and what output does it provide
 
-* **Trend Analysis**: Examined temporal trends in affordability for both rental and housing prices to determine the feasibility and relevance of analyzing both sectors concurrently.
+
+* **Trend Analysis**: Examined temporal trends in affordability for housing prices to determine to the significance of the problem facing Oregon Counties
     + Mann-Kendal test for trend significance and direction
 * **Correlation and Significance Testing**: Analyzed feature correlations and performed significance tests to identify key predictors of target variables (rent and median sale price).
 * **Feature Importance Analysis**: Employed the `permutation_importance` function from the `sklearn` library to ascertain the importance of various features. A Random Forest Regressor model was constructed and evaluated to validate these findings.

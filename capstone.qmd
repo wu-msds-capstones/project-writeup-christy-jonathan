@@ -15,6 +15,7 @@ format:
 execute:
   echo: false
 jupyter: python3
+lightbox: true
 ---
 
 {{< include _01_intro.qmd >}}
