@@ -4,10 +4,15 @@
 
 Using the analysis of the strategy-tagged features above, we moved forward with the following set of indicators to analyze:
 
-`new_listings`, `inventory`, `median_sale_price`, `num_housing_units`,
+independent variables = `new_listings`, `inventory`, `median_sale_price`, `num_housing_units`,
 `median_income`, `population`, `property_tax`, `homes_sold`, `days_on_market`
+dependent variable = `median_sale_price`
 
+**Scatter Plot Samples - Populated vs unpopulated counties**
 
+**Trend Plots and MK numbers**
+
+**Homes Sold Feature Significance**
 After the home sold feature significance study, we narrowed the features to:
 
 inventory 99.91256033101263
@@ -17,9 +22,9 @@ population 99.1469914305979
 property_tax 99.984587972013
 days_on_market 99.81316847705574
 
-Add a list of values that came out of the strategy goal data search.
 
-Add scatter plots and correlation tables
+**Linear Regression - linear plot samples for populated and unpopulated counties**
+
 heavily populated county
 ['num_housing_units', 'days_on_market', 'inventory']
 R^2: 0.9433446186152313, MAE: 16.193945048122767, RMSE: 19.545064130639542
@@ -75,3 +80,6 @@ Residuals are normally distributed
 This value 86.72 is a strong indicator that if you increase housing units, median house prices will rise.
 This is surprising given that a lot of the focus is on building more housing at a faster pace.
 What's up with this?  Does it hold true for other counties?
+
+
+**Random Forest Model - Feature importances, decision tree, table of results** 

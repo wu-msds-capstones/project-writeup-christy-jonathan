@@ -104,7 +104,7 @@ We were able to obtain a number of features related to affordability, including 
 create new variables specifically targeted to affordability.
 
 ###### **Reconciling Monthly and Yearly Data**
-We noticed odd things when we plotted monthly vs yearly data in our scatter plot graphs.  Our data took on clumped column shapes.  And it did really seem representative of what happens in reality.
+We noticed odd things when we plotted monthly vs yearly data in our scatter plot graphs.  Our data took on clumped column shapes.  And it did not seem representative of what happens in reality.
 A county's median income does not suddently increase from one year to the next, for example.  Many of these variables will be different over smaller increments of time.
 While consulting with our project statistician, Hank Ibser, he suggested that smoothing the transition of the yearly variables by taking the average change and cumulatively increasing
 (or decreasing) the feature amount over the number of months of county data would be a better way to deal with the features than to leave large jumps from year to year.  This left the question

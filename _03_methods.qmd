@@ -90,7 +90,7 @@ fig.show()
 
 #### Project Design
 
-##### Summary of Strategy
+##### Summary
 
 In this study, we sought to identify dataset features associated with a set of researched housing strategies. First, 
 we curated a list of relevant features and then narrowed it down by identifying those with the highest percentages of 
@@ -101,7 +101,8 @@ To capture more complex, potentially non-linear relationships, we also employed 
 This allowed us to evaluate the importance of each feature based on our original list of strategies.
 
 These methodologies enable us to determine the most critical factors to focus on, such as increasing the housing supply, 
-when formulating housing strategies.
+when formulating housing strategies.  Put simply, you can think of the design as a funnel where each step takes the next
+logical progression in finding a set of strategy-associated features that affect the median sale price the most.
 
 ##### 1. Materials List (Software used) 
 
@@ -273,16 +274,43 @@ linear regression.  To ensure we went forward with an appropriate set of feature
 
 ##### 5. Building a Linear Regression Model
 
-Our previous analysis left us with a subset of combinations to use for fitting a linear model. The list was small enough that we could fit a 
-linear regression model to all combinations and evaluate the best fit.  Finding models with a good fit allowed us to note the features associated with
-this combination and to use this to compare against our random forest model.  While looping through our feature combinations, we also employed the 
-Anderson-Darling test to test that the residuals had a normal distribution so that we could evaluate the feasibility of the fit.  If the p-value of the 
-Anderson-Darling test was < .05, we call this not normally distributed for that set of combinations.
+Our previous analysis yielded a subset of feature combinations suitable for fitting a linear model. The subset was manageable enough to fit a linear 
+regression model to all combinations, create train and test datasets with a 70%/30% split, and use Scikit-learn’s LinearRegression library to evaluate each combination's performance. 
+Identifying models with a good fit allowed us to determine the associated features and compare them against our random forest model. During this process, we also applied the Anderson-Darling 
+test to ensure that the residuals followed a normal distribution, which is necessary for evaluating the model’s fit. A p-value less than 0.05 in the Anderson-Darling 
+test indicated that the residuals were not normally distributed for that combination of features. Linear regression is a valuable tool for understanding the magnitude 
+and direction of a feature’s impact on the target variable.  We noted that the models fit differently between densely populated counties and sparsely populated counties.  We took a representative
+of each kind of county to represent how the model fit.  For each model fit, we measured the following values:
 
-##### 5. Building a Random Forest Model
+* R-squared
+* Mean Absolute Error (MAE)
+* Mean Squared Error (MSE)
+* Root Mean Squared Error (RMSE)
+* Mean Absolute Percentage Error (MAPE)
+* Max Error
+* Mean Squared Log Error
+* Median Absolute Error
+* Mean Poisson Deviance
+* Mean Gamma Deviance
 
-Beginning again with our 
-* **Feature Importance Analysis**: Employed the `permutation_importance` function from the `sklearn` library to ascertain the importance of various features. A Random Forest Regressor model was constructed and evaluated to validate these findings.
+##### 6. Building a Random Forest Model
 
-##### 5. Forecasting Housing Prices
-Finally, leveraging the optimal Random Forest model, we developed a time series forecast to predict future housing prices. This predictive model aided in anticipating market trends and formulating effective strategies to enhance housing affordability.
+Random Forest ML models are useful to capture more of the feature effects on a target variable than linear regression can accomplish.  Therefore, it is worth
+fitting a Random Forest Regressor model.  We used a 2-step approach, first fitting the model to all strategy-tagged features, then checked for feature importance
+to find the features that contribute the most to the model, then re-running the model with the most important features.  
+We used Scikit-learn's RandomForest library to train and test the dataset.  We next employed the 
+`permutation_importance` function from the `sklearn` library to ascertain the importance of various features. 
+A Random Forest Regressor model was constructed and evaluated to validate these findings.  For each county we measured the following values:
+
+* R-squared
+* Mean Absolute Error (MAE)
+* Mean Squared Error (MSE)
+* Root Mean Squared Error (RMSE)
+* Mean Absolute Percentage Error (MAPE)
+* Max Error
+* Mean Squared Log Error
+* Median Absolute Error
+* Mean Poisson Deviance
+* Mean Gamma Deviance
+
+We were then ready to compare and contrast our feature findings.
