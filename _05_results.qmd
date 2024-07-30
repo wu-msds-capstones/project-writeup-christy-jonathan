@@ -120,3 +120,4 @@ Random Forest Feature Importance:
 Resultant Forest Decsion Tree:
 
 ![Random Forest Decision Tree](images/random_forest-tree.png){#fig-rf-decision-tree}
+
