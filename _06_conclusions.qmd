@@ -13,5 +13,3 @@ The evidence we found that a positive increase in the number of housing units is
 prices is interesting.  We found several articles suggesting that building more housing positively affects affordability
 depending on where you build - that not all places and all areas will see a price relief with more housing units.
 We will dig into this more in the next week.
-
-Adding a test line to see if it deploys
