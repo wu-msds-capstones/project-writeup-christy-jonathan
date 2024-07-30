@@ -96,7 +96,7 @@ These datasets were imported into temporary tables using an SQL script, facilita
 
 By joining our resulting tables, were able to use this database to create the initial dataset, output to a CSV file, to use for our analysis.
 
-![Data ERD](images/data/erd.png){#fig-erd}
+![Data ERD](images/data/erd-updated.png){#fig-erd}
 
 
 ### Feature Engineering

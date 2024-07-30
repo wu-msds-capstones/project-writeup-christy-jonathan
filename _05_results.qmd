@@ -23,7 +23,6 @@ This is a trend that will show up all through the analysis.
 :::
 
 
-
 **Trend Plots and MK numbers**
 
 Trend analysis for time series is interesting to plot.  We found out a lot about this data by plotting this data over time.  You can see in the 
@@ -34,16 +33,18 @@ trends below that the densely populated counties (top 2 graphs) are trend in a s
 
 
 
-
 **Homes Sold Feature Significance**
+
 After the home sold feature significance study, we narrowed the features to:
 
-inventory 99.91256033101263
-num_housing_units 99.984587972013
-median_income 99.984587972013
-population 99.1469914305979
-property_tax 99.984587972013
-days_on_market 99.81316847705574
+| feature             | percent of home sales represented |
+|---------------------|-----------------------------------|
+| `inventory`         | 99.91256033101263                 |
+| `num_housing_units` | 99.984587972013                   |
+| `median_income`     | 99.984587972013                   |
+| `population`        | 99.1469914305979                  |
+| `property_tax`      | 99.984587972013                   |
+| `days_on_market`    | 99.81316847705574                 |
 
 
 **Linear Regression - linear plot samples for populated and unpopulated counties**
