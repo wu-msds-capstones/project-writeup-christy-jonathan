@@ -1,16 +1,39 @@
 # Results
 
-### Feature Set For Analysis
+##### Research and Identification of Core Strategies
+
 
 Using the analysis of the strategy-tagged features above, we moved forward with the following set of indicators to analyze:
 
-independent variables = `new_listings`, `inventory`, `median_sale_price`, `num_housing_units`,
+independent variables = `new_listings`, `inventory`, `num_housing_units`,
 `median_income`, `population`, `property_tax`, `homes_sold`, `days_on_market`
+
 dependent variable = `median_sale_price`
 
-**Scatter Plot Samples - Populated vs unpopulated counties**
+**Scatter Plot Samples**
+
+What we found early on in the analysis was that there is a big difference in how features respond to `median_sale_prices`
+depending on the county density.  For example, the following scatter plot clusters are from Washington and Wheeler Counties.
+This is a trend that will show up all through the analysis.
+
+::: {#fig-scatter layout-ncol=2}
+![Washington County Scatterplots](images/washington_scatter.png){#wash-scatter width=300}
+
+![Wheeler County Scatterplots](images/wheeler_scatter.png){#wheeler-scatter width=300}
+:::
+
+
 
 **Trend Plots and MK numbers**
+
+Trend analysis for time series is interesting to plot.  We found out a lot about this data by plotting this data over time.  You can see in the 
+trends below that the densely populated counties (top 2 graphs) are trend in a similar manner, but differ from the sparsely populated counties
+(bottom 2 graphs).
+
+![Home Sale Price Trend in Densely Populated vs Sparsely Populated Oregon Counties](images/county_sales.png){#fig-county-sales}
+
+
+
 
 **Homes Sold Feature Significance**
 After the home sold feature significance study, we narrowed the features to:

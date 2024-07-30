@@ -267,20 +267,28 @@ This further refined the set of features that we will consider for a multiple li
 
 * **Testing For Multicollinearity**
 
-One thing that might cause a regression analysis to show better than expected results is when the independent features are not so independent with each other.
-Using variance_inflation_factor (VIF) from the Statsmodels library, we were able to try all combinations of our remaining variables to find viable candidate
-combinations to fit a linear model.  Using a threshold VIF of 10, we narrowed usable combinations of features that could be used together for multiple 
-linear regression.  To ensure we went forward with an appropriate set of features, we ran this analysis on the most and least populated counties.
+One potential factor that may lead to unexpectedly favorable results in a regression analysis is the presence of multicollinearity 
+among the independent variables. To address this issue, we utilized the Variance Inflation Factor (VIF) from the Statsmodels 
+library to evaluate all possible combinations of our remaining variables. By applying a VIF threshold of 10, we were able to 
+identify viable sets of features suitable for inclusion in a multiple linear regression model. To ensure the robustness of our 
+feature selection, we conducted this analysis on both the most and least populated counties.
 
 ##### 5. Building a Linear Regression Model
 
-Our previous analysis yielded a subset of feature combinations suitable for fitting a linear model. The subset was manageable enough to fit a linear 
-regression model to all combinations, create train and test datasets with a 70%/30% split, and use Scikit-learn’s LinearRegression library to evaluate each combination's performance. 
-Identifying models with a good fit allowed us to determine the associated features and compare them against our random forest model. During this process, we also applied the Anderson-Darling 
-test to ensure that the residuals followed a normal distribution, which is necessary for evaluating the model’s fit. A p-value less than 0.05 in the Anderson-Darling 
-test indicated that the residuals were not normally distributed for that combination of features. Linear regression is a valuable tool for understanding the magnitude 
-and direction of a feature’s impact on the target variable.  We noted that the models fit differently between densely populated counties and sparsely populated counties.  We took a representative
-of each kind of county to represent how the model fit.  For each model fit, we measured the following values:
+Our prior analysis identified a subset of feature combinations suitable for fitting a linear regression model. This 
+subset was sufficiently manageable to allow us to fit linear regression models to all combinations. We then created 
+training and testing datasets with a 70%/30% split and utilized Scikit-learn’s LinearRegression library to evaluate 
+the performance of each combination.
+
+By identifying models with a good fit, we were able to determine the relevant features and compare them with our random 
+forest model. To ensure the validity of our models, we applied the Anderson-Darling test to verify that the residuals followed 
+a normal distribution, which is crucial for evaluating the model’s fit. A p-value less than 0.05 in the Anderson-Darling 
+test indicated that the residuals were not normally distributed for that particular combination of features.
+
+Linear regression is an essential tool for understanding the magnitude and direction of a feature’s impact on the target 
+variable. Our analysis revealed differences in model fit between densely populated and sparsely populated counties. We 
+selected a representative county from each category to illustrate these differences. For each model fit, we measured the 
+following values:
 
 * R-squared
 * Mean Absolute Error (MAE)
@@ -295,12 +303,14 @@ of each kind of county to represent how the model fit.  For each model fit, we m
 
 ##### 6. Building a Random Forest Model
 
-Random Forest ML models are useful to capture more of the feature effects on a target variable than linear regression can accomplish.  Therefore, it is worth
-fitting a Random Forest Regressor model.  We used a 2-step approach, first fitting the model to all strategy-tagged features, then checked for feature importance
-to find the features that contribute the most to the model, then re-running the model with the most important features.  
-We used Scikit-learn's RandomForest library to train and test the dataset.  We next employed the 
-`permutation_importance` function from the `sklearn` library to ascertain the importance of various features. 
-A Random Forest Regressor model was constructed and evaluated to validate these findings.  For each county we measured the following values:
+Random Forest machine learning models are advantageous for capturing the effects of features on a target variable more 
+comprehensively than linear regression. Therefore, fitting a Random Forest Regressor model is beneficial. We employed a 
+two-step approach: initially fitting the model to all strategy-tagged features and subsequently assessing feature importance 
+to identify the most significant contributors. The model was then re-run using these key features.
+
+We utilized Scikit-learn’s RandomForest library to train and test the dataset. Additionally, we employed the 
+permutation_importance function from the sklearn library to determine the importance of various features. A Random Forest 
+Regressor model was constructed and evaluated to validate these findings. For each county, we measured the following values:
 
 * R-squared
 * Mean Absolute Error (MAE)
