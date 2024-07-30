@@ -31,7 +31,9 @@ trends below that the densely populated counties (top 2 graphs) are trend in a s
 
 ![Home Sale Price Trend in Densely Populated vs Sparsely Populated Oregon Counties](images/county_sales.png){#fig-county-sales}
 
+Trends can also show us where housing payments began to become unaffordable, like in the figure below.
 
+![housing_unaffordability.png](images/housing_unaffordability.png){#fig-unaffordable-wash}
 
 **Homes Sold Feature Significance**
 
@@ -49,61 +51,68 @@ After the home sold feature significance study, we narrowed the features to:
 
 **Linear Regression - linear plot samples for populated and unpopulated counties**
 
-heavily populated county
-['num_housing_units', 'days_on_market', 'inventory']
-R^2: 0.9433446186152313, MAE: 16.193945048122767, RMSE: 19.545064130639542
-[[89.95451505 -7.37731073 -0.80338433]]
-R^2: 0.9481585539170969, MAE: 15.803988661121972, RMSE: 19.1311263750814
-[89.60015342 -6.76951301 -0.26717163]
-R^2: 0.948111123266678, MAE: 15.744006645291556, RMSE: 19.15797677438745
-[[88.03848182 -7.85310024 -1.80096182]]
-R^2: 0.8574977237505407, MAE: 21.018972640322108, RMSE: 28.31323265048624
-[ 51.69979859 -13.78123826 -14.58236149]
+Washington County Results - heavily populated county
 
+* Independent Variable Combination: ['num_housing_units', 'days_on_market', 'inventory']
+* Evaluation Statistics: R^2: 0.9550268107703429, MAE: 18.991051374287636, RMSE: 24.584835761694823
+* Anderson-Darling test for residuals: below 0.05 generally means non-normal: 0.060124359532653535
+* Coefficients: 
+  + `num_housing_units` = 84.85562076, 
+  + `days_on_market` = -8.46017593, 
+  + `inventory` = -1.06431453
 
-['days_on_market', 'median_income', 'inventory']
-R^2: 0.9704712449227768, MAE: 11.993113785074973, RMSE: 14.955696118304338
-[[-11.49218249  88.66483828  -1.99017148]]
-R^2: 0.9736330592012308, MAE: 11.682947609480928, RMSE: 14.682037601088881
-[-10.82886224  88.28910228  -1.41269196]
-R^2: 0.973630014602336, MAE: 11.774953096221724, RMSE: 14.811350297837592
-[[-11.8117027   87.00494604  -2.82504932]]
-R^2: 0.8836405474706962, MAE: 20.69364293230564, RMSE: 26.225322249595777
-[-15.10357394  53.04195129 -14.08402482]
+This coefficient for `num_housing_units` a strong indicator that if you increase housing units, median house prices will rise.
+This is surprising given that a lot of the focus is on building more housing at a faster pace.
 
-for wheeler (does not fit well for sparsely populated counties - can talk about why in the results section)
+Wheeler County Results - sparsely populated county
 
-['days_on_market', 'property_tax']
-R^2: -0.5061450863605648, MAE: 114.81820501947084, RMSE: 140.00460151139507
-[[ 2.2534008  59.14712804]]
-R^2: 0.032575161383987306, MAE: 114.69180276724073, RMSE: 139.87063478766433
-[ 0.91272976 57.80662082]
-R^2: 0.032584314674029446, MAE: 114.57461439207694, RMSE: 139.78004225800447
-[[ 1.86887164 57.79309271]]
-R^2: 0.028775150023368057, MAE: 116.29691015616031, RMSE: 137.97895617062284
-[-1.67167483 38.43348455]
+* Independent Variable Combination: ['num_housing_units', 'days_on_market', 'inventory']
+* Evaluation Statistics: R^2: 0.02140717912691359, MAE: 134.56532825628832, RMSE: 185.9532651361748
+* Anderson-Darling test for residuals: below 0.05 generally means non-normal: 2.099955001334869e-12
+* Coefficients: 
+  + `num_housing_units` = 18.18540814, 
+  + `days_on_market`= 30.85635937, 
+  + `inventory` = -29.20292623
 
 Findings:
 
-1.  Regression fits well to densely populated counties with a median_sale_price target.
-2.  Sparsely populated counties are best modeled by their median rental prices.
-
-
-
-This is what I want to focus on:
-
-Plain Linear Regression:
-
-['num_housing_units', 'days_on_market', 'inventory']
-R^2: 0.9550268107703429, MAE: 18.991051374287636, RMSE: 24.584835761694823
-Using the Anderson-Darling test for normal distribution
-p-value from the test - below 0.05 generally means non-normal: 0.060124359532653535
-Residuals are normally distributed
-[[86.72340057 -7.53914015  0.23939715]]
-
-This value 86.72 is a strong indicator that if you increase housing units, median house prices will rise.
-This is surprising given that a lot of the focus is on building more housing at a faster pace.
-What's up with this?  Does it hold true for other counties?
+1.  Regression fits well to densely populated counties with a median sale price target.
+2.  Sparsely populated counties are best modeled by collected data to median sale prices.
 
 
 **Random Forest Model - Feature importances, decision tree, table of results** 
+
+Model test statistics for Washington County:
+
+| Metric                                | Value                 |
+|---------------------------------------|-----------------------|
+| Mean Absolute Error (MAE)             | 7.522343744087813     |
+| Mean Squared Error (MSE)              | 104.32109361078466    |
+| Root Mean Squared Error (RMSE)        | 104.32109361078466    |
+| Mean Absolute Percentage Error (MAPE) | 0.01931186065104155   |
+| Explained Variance Score              | 0.9885975711129124    |
+| Max Error                             | 46.91661360861349     |
+| Mean Squared Log Error                | 0.0006227441802917824 |
+| Median Absolute Error                 | 6.501995768773753     |
+| R^2                                   | 0.9885829946465465    |
+| Mean Poisson Deviance                 | 0.2447723229456236    |
+| Mean Gamma Deviance                   | 0.0006260260341751169 |
+
+Model test statistics for Wheeler County:
+
+| Metric                                | Value               |
+|---------------------------------------|---------------------|
+| Mean Absolute Error (MAE)             | 8274.479156903197   |
+| Root Mean Squared Error (RMSE)        | 8274.479156903197   |
+| Mean Absolute Percentage Error (MAPE) | 0.6771181405050725  |
+| Explained Variance Score              | 0.6352815417171738  |
+| Max Error                             | 321.35144577975683  |
+| Mean Squared Log Error                | 0.3436727515864253  |
+| Median Absolute Error                 | 67.40806586081992   |
+| R^2                                   | 0.6351549430802184  |
+| Mean Poisson Deviance                 | 40.06686486557459   |
+| Mean Gamma Deviance                   | 0.27567274349559723 |
+
+Random Forest Feature Importance:
+
+![Random Forest Feature Importance](images/random_forest_permutation_importance.png){#fig-rf-feature-imp}
