@@ -4,4 +4,12 @@ Our results depend on what kind of counties we are looking at.
 Sparsely populated county home sales are mostly land sales and not at all like the dynamics
 seen in densely populated counties.  A one-fit model is inadequate to cover all Oregon counties.
 
-However, these sparsely populated counties also do not 
+However, these sparsely populated counties also do not represent a large portion of the housing market.  The data
+for these counties is often missing and, when inspected, you find that the "house" sales reported in by Redfin would
+be more accurately described as "land" sales.  Our data does not seem to fit these kinds of transactions or model
+why they would be rising in price.
+
+The evidence we found that a positive increase in the number of housing units is correlated to an increase in housing
+prices is interesting.  We found several articles suggesting that building more housing positively affects affordability
+depending on where you build - that not all places and all areas will see a price relief with more housing units.
+We will dig into this more in the next week.
