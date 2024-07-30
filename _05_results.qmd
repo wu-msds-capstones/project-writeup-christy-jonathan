@@ -20,11 +20,58 @@ days_on_market 99.81316847705574
 Add a list of values that came out of the strategy goal data search.
 
 Add scatter plots and correlation tables
+heavily populated county
+['num_housing_units', 'days_on_market', 'inventory']
+R^2: 0.9433446186152313, MAE: 16.193945048122767, RMSE: 19.545064130639542
+[[89.95451505 -7.37731073 -0.80338433]]
+R^2: 0.9481585539170969, MAE: 15.803988661121972, RMSE: 19.1311263750814
+[89.60015342 -6.76951301 -0.26717163]
+R^2: 0.948111123266678, MAE: 15.744006645291556, RMSE: 19.15797677438745
+[[88.03848182 -7.85310024 -1.80096182]]
+R^2: 0.8574977237505407, MAE: 21.018972640322108, RMSE: 28.31323265048624
+[ 51.69979859 -13.78123826 -14.58236149]
 
 
+['days_on_market', 'median_income', 'inventory']
+R^2: 0.9704712449227768, MAE: 11.993113785074973, RMSE: 14.955696118304338
+[[-11.49218249  88.66483828  -1.99017148]]
+R^2: 0.9736330592012308, MAE: 11.682947609480928, RMSE: 14.682037601088881
+[-10.82886224  88.28910228  -1.41269196]
+R^2: 0.973630014602336, MAE: 11.774953096221724, RMSE: 14.811350297837592
+[[-11.8117027   87.00494604  -2.82504932]]
+R^2: 0.8836405474706962, MAE: 20.69364293230564, RMSE: 26.225322249595777
+[-15.10357394  53.04195129 -14.08402482]
 
+for wheeler (does not fit well for sparsely populated counties - can talk about why in the results section)
+
+['days_on_market', 'property_tax']
+R^2: -0.5061450863605648, MAE: 114.81820501947084, RMSE: 140.00460151139507
+[[ 2.2534008  59.14712804]]
+R^2: 0.032575161383987306, MAE: 114.69180276724073, RMSE: 139.87063478766433
+[ 0.91272976 57.80662082]
+R^2: 0.032584314674029446, MAE: 114.57461439207694, RMSE: 139.78004225800447
+[[ 1.86887164 57.79309271]]
+R^2: 0.028775150023368057, MAE: 116.29691015616031, RMSE: 137.97895617062284
+[-1.67167483 38.43348455]
 
 Findings:
 
 1.  Regression fits well to densely populated counties with a median_sale_price target.
 2.  Sparsely populated counties are best modeled by their median rental prices.
+
+
+
+This is what I want to focus on:
+
+Plain Linear Regression:
+
+['num_housing_units', 'days_on_market', 'inventory']
+R^2: 0.9550268107703429, MAE: 18.991051374287636, RMSE: 24.584835761694823
+Using the Anderson-Darling test for normal distribution
+p-value from the test - below 0.05 generally means non-normal: 0.060124359532653535
+Residuals are normally distributed
+[[86.72340057 -7.53914015  0.23939715]]
+
+This value 86.72 is a strong indicator that if you increase housing units, median house prices will rise.
+This is surprising given that a lot of the focus is on building more housing at a faster pace.
+What's up with this?  Does it hold true for other counties?

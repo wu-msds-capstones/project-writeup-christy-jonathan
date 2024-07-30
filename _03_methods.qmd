@@ -253,30 +253,36 @@ test to measure these trends by county for each feature in our feature set with 
 
 * **Linregress, a quick fit to measure significance**
 
-We analyzed 36 counties in our dataset to identify which features have a significant association with the number 
+We analyzed 36 counties in our dataset to identify which features have a significant association with the highest number 
 of homes sold in Oregon. We developed an algorithm that uses the linregress from the SciPy Stats library and calculates 
 the sum of the percentages of homes sold in each county where a feature is significant. For example, Washington County 
 accounts for about 15% of all homes sold in Oregon during the period covered by our dataset. If a feature is only significant 
 in Washington County, its representation among all homes sold in Oregon would be 15%. We set a p-value threshold of 0.05 for 
 significance and required that significant features be present in at least 90% of home sales to be considered. See @fig-feature-sig below for more details.
 
-![Feature Significance Representation in Oregon Home Sales](images/sig-feature-representation.png){#fig-feature-sig width=300}
+![Feature Significance Representation in Oregon Home Sales](images/feature_significance.drawio.png){#fig-feature-sig width=300}
 
 This further refined the set of features that we will consider for a multiple linear regression model.
 
 * **Testing For Multicollinearity**
 
 One thing that might cause a regression analysis to show better than expected results is when the independent features are not so independent with each other.
-Using variance_inflation_factor from the Statsmodels library, we were able to try all combinations of our remaining variables to find viable candidate
-combinations to fit a linear model.
+Using variance_inflation_factor (VIF) from the Statsmodels library, we were able to try all combinations of our remaining variables to find viable candidate
+combinations to fit a linear model.  Using a threshold VIF of 10, we narrowed usable combinations of features that could be used together for multiple 
+linear regression.  To ensure we went forward with an appropriate set of features, we ran this analysis on the most and least populated counties.
 
 ##### 5. Building a Linear Regression Model
 
-
-* **Feature Importance Analysis**: Employed the `permutation_importance` function from the `sklearn` library to ascertain the importance of various features. A Random Forest Regressor model was constructed and evaluated to validate these findings.
+Our previous analysis left us with a subset of combinations to use for fitting a linear model. The list was small enough that we could fit a 
+linear regression model to all combinations and evaluate the best fit.  Finding models with a good fit allowed us to note the features associated with
+this combination and to use this to compare against our random forest model.  While looping through our feature combinations, we also employed the 
+Anderson-Darling test to test that the residuals had a normal distribution so that we could evaluate the feasibility of the fit.  If the p-value of the 
+Anderson-Darling test was < .05, we call this not normally distributed for that set of combinations.
 
 ##### 5. Building a Random Forest Model
 
+Beginning again with our 
+* **Feature Importance Analysis**: Employed the `permutation_importance` function from the `sklearn` library to ascertain the importance of various features. A Random Forest Regressor model was constructed and evaluated to validate these findings.
 
 ##### 5. Forecasting Housing Prices
 Finally, leveraging the optimal Random Forest model, we developed a time series forecast to predict future housing prices. This predictive model aided in anticipating market trends and formulating effective strategies to enhance housing affordability.
