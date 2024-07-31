@@ -118,7 +118,6 @@ If year < 2022:
 <div text-align="center">$$ mc = \frac{nyv - cyv}{n} $$ </div>
 <div text-align="center">$$ \sum_{i = 1}^{n}i{(mc)} $$ </div>
 
-fix this so it explains the anyv
 
 If year = 2022:
 <div text-align="center">$$ amc = \frac{\sum_{i = 1}^{j}{mc}}{j} $$ </div>

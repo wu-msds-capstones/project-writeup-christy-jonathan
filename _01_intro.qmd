@@ -10,7 +10,7 @@ growth, strict land use laws, land prices, neighborhood gentrification, interest
 issues caused by the COVID pandemic, and increased construction costs and permit fees, many states have
 seen housing affordability dwindle and homelessness grow.
 
-![Median Home Price Increase vs Median Income Increase](images/median_sale_price_increase.png)
+![Median Home Price Increase vs Median Income Increase](images/median_sale_price_increase.png){#fig-price-increase}
 
 Oregon, in particular,  is experiencing a profound housing crisis characterized by an imbalance between the rapidly increasing
 demand for housing and the availability of affordable housing options. As the state’s population grows,
