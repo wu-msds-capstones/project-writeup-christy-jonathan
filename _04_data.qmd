@@ -1,5 +1,9 @@
 # Data
 
+### Data Ethics
+
+When it comes to collecting and preparing the data for this project. Data Ethics plays 
+
 ### Project Data Ideation
 
 In this section, we address the significant lack of publicly available housing data, which has posed considerable challenges for our research. Although we successfully integrated ten years of Redfin data with demographic and economic indicators, there remain several critical data points we were unable to obtain. Notably, data extending beyond ten years, historical land prices, construction costs, and timelines for housing development were inaccessible. These gaps represent missed opportunities that could have enhanced the comprehensiveness of our dataset.
