@@ -29,6 +29,7 @@ housing_data_engineered = pd.read_csv(file_path)
 
 # Convert the date column to datetime format
 housing_data_engineered['date'] = pd.to_datetime(housing_data_engineered['date'])
+housing_data_engineered['county'] = housing_data_engineered['county'].apply(lambda x: x.capitalize())
 
 # Get unique list of counties
 counties = housing_data_engineered['county'].unique()
@@ -65,16 +66,38 @@ layout = dict(
    buttons = dropdown_buttons,
    direction =  'down',
    showactive = True,
+   pad={"r": 10},
    yanchor="top",
-   y=0.86,
+   y=0.95,
    xanchor="left",
-   x=1.1
+   x=1.05
 )
+
+fig.update_layout(margin=dict(t=100, b=50)) 
+
+fig.update_layout(legend=dict(
+    yanchor="top",
+    y=0.99,
+    xanchor="left",
+    x=0.01,
+
+))
 
 fig.update_layout(
     updatemenus=[
         layout
     ]
+)
+
+# Add annotation for the dropdown
+fig.add_annotation(
+    text="County",
+    x=1.15,  # X position of the annotation
+    y=1.0,   # Y position of the annotation (adjusted to be slightly above the dropdown)
+    xref="paper",  # Reference to the paper coordinate system
+    yref="paper",
+    showarrow=False,  # No arrow
+    font=dict(size=12)  # Font size
 )
 
 # Update axis labels and title
@@ -83,12 +106,25 @@ fig.update_layout(
     xaxis_title='Date',
     yaxis_title='Monthly Rental Payment (U.S. Dollars)',
 )
+fig.update_layout(yaxis_tickprefix = '$')
+fig.update_traces(mode="lines", hovertemplate=None)
+fig.update_layout(hovermode="x")
+fig.update_layout(hoverlabel_namelength=-1)
 
 # Show the plot
 fig.show()
 ```
 
 #### Project Design
+
+After collecting as many statistics as we could and building our dataset, we created a design for the rest of the project.
+To determine the strategies that could help the most with affordable housing, we did a 3-part analysis.
+
+###### Strategy list, tagged with dataset associations
+###### Found the best-fit multilinear model to each Oregon county and collected data about that set of features
+###### To account for the non-linear aspect of our data, we fit a Random Forest model to each county and found associated feature importances
+
+###### Visually show a venn diagram?  Discuss the intersection in the conclusions
 
 ##### Summary
 
@@ -107,13 +143,13 @@ logical progression in finding a set of strategy-associated features that affect
 ##### 1. Materials List (Software used) 
 
 	1.  python v3.12.4	
-	2.  sklearn	v1.5.1 for linear regression and random forest
+	2.  sklearn	v1.5.1
     3.  SciPy v1.14.0
 	4.  statsmodels v0.14.1
     5.  seaborn v0.13.2, matplotlib v3.9.0, and plotly v5.23.0 for visualizations
     6.  pandas v2.2.2 and numpy v2.0 for data manipulation
     7.  pymannkendall v1.4.3
-    7.  OpenAI ChatGPT4 and Anthropic Claude3.5 Sonet
+    8.  OpenAI ChatGPT4 and Anthropic Claude3.5 Sonet
 
 ##### 2. Research and Identification of Core Strategies - A way to refine the dataset to targeted variables
 Given the ultimate goal of this project to identify strategies that can help balance demand with the rising cost of housing, 
@@ -154,7 +190,7 @@ For creating the AI prompt, we uploaded a CSV containing all data from our Postg
 :::
 
 ::: {.callout-note collapse="true"}
-## Anthropic Claud AI feature tagging - Click to Expand
+## Anthropic Claud AI feature tagging output - Click to Expand
 ### Goals and Associated Features in the Dataset
 | Strategy                                              | Direct Associations             | Indirect Associations                               |
 |-------------------------------------------------------|---------------------------------|-----------------------------------------------------|
@@ -172,14 +208,14 @@ For creating the AI prompt, we uploaded a CSV containing all data from our Postg
 | **Increased Funding for Affordable Housing Programs** |                                 | `new_listings`, `inventory`, `median_sale_price`    |
 | **Supportive Housing**                                |                                 | `new_listings`, `inventory`                         |
 
-General observations:
-* population and num_housing_units: Indirectly affected by many strategies
-* median_income: Provides context for affordability
-* monthly_average_mortgage_rate: Impacts overall affordability but not directly influenced by local strategies
+General observations:<br><br>
+`population and num_housing_units`: Indirectly affected by many strategies<br>
+`median_income`: Provides context for affordability<br>
+`monthly_average_mortgage_rate`: Impacts overall affordability but not directly influenced by local strategies<br>
 :::
 
 ::: {.callout-note collapse="true"}
-## OpenAI ChatGPT feature tagging - Click to Expand
+## OpenAI ChatGPT feature tagging output - Click to Expand
 ### Goals and Associated Features in the Dataset
 | **Strategy**                                | **Goal**                                                                                             | **Directly Associated Features**                                  | **Indirectly Associated Features**                             |
 |---------------------------------------------|------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------|
