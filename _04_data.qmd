@@ -1,5 +1,9 @@
 # Data
 
+### Data Ethics
+
+In affordable housing research, data ethics is critical to ensure respectful and responsible handling of data. Key considerations include safeguarding data privacy and confidentiality through anonymization and secure storage, ensuring data accuracy by cleaning and cross-verifying sources, and maintaining transparency about data processes. Informed consent is essential when collecting personal data, ensuring participants understand the purpose and use of their data and can withdraw consent at any time. Avoiding bias in data collection and analysis is crucial to prevent unfair policies, which can be mitigated by using diverse data sources and regular bias testing. Research should aim for a positive societal impact, addressing real-world needs and promoting equity by engaging with stakeholders. Potential harms must be assessed and mitigated, with adherence to ethical standards verified by an Institutional Review Board. Responsible data use and sharing balance the benefits of data insights with the risks of misuse, restricting access to authorized personnel and using data strictly for its intended purpose. These principles ensure affordable housing research is conducted ethically, respecting individual rights and contributing positively to society.
+
 ### Project Data Ideation
 
 In this section, we address the significant lack of publicly available housing data, which has posed considerable challenges for our research. Although we successfully integrated ten years of Redfin data with demographic and economic indicators, there remain several critical data points we were unable to obtain. Notably, data extending beyond ten years, historical land prices, construction costs, and timelines for housing development were inaccessible. These gaps represent missed opportunities that could have enhanced the comprehensiveness of our dataset.
