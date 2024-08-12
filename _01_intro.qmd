@@ -13,7 +13,7 @@ seen housing affordability dwindle and homelessness grow.
 ![Median Home Price Increase vs Median Income Increase](images/median_sale_price_increase.png){#fig-price-increase}
 
 Oregon, in particular,  is experiencing a profound housing crisis characterized by an imbalance between the rapidly increasing
-demand for housing and the availability of affordable housing options. As the state’s population grows,
+demand for housing, and the availability of affordable housing options. As the state’s population grows,
 particularly in urban centers such as Portland, Eugene, and Bend, the pressure on the housing market has
 intensified, leading to soaring home prices and rental rates. This trend has created significant challenges for
 low- and middle-income families, who are increasingly unable to find affordable housing. The severity of this
