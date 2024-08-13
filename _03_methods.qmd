@@ -7,7 +7,7 @@ The aim of this project was to primarily look into unaffordable housing and hous
 of housed individuals:  those who rent and those who own a home.  To decide if we should be focused on both rental unit prices and current home sales, we looked at the
 current affordability strategies and compared them with our data to determine the most immediate need.
 
-##### Evaluation of the current rental situation:
+#### Evaluation of the current rental situation:
 About 33% of Oregonians rent, based on the most up-to-date U.S. Census numbers (Oregon’s Homeownership Rate, n.d.).  We evaluated, `median_rent_2bdrm` vs `monthly_affordable_housing_payment` county-by-county
 to assess whether Oregonians are paying an unaffordable amount of rent each month.  You can see in the graph below that rental prices sit comfortably under the maximum affordable threshold.  Becuase of this, we decided to focus
 on home sale prices for the rest of our analysis.
