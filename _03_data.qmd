@@ -1,0 +1,328 @@
+# Data
+
+Our data consist of a table of strategic interventions (that are commonly employed in Oregon and elsewhere in the United States) and a dataset of Oregon county-level housing, demographic, and economic data between January 2013 and December 2022.  Below, we detail how we got the data, how it was cleaned, and how it was stored.  We also document potential biases we have introduced in the collection and processing of this data.
+
+### Identification of Strategies
+Given the ultimate goal of this project to identify strategies that can help balance demand with the rising cost of housing, 
+we began by conducting a comprehensive review of current strategies addressing housing affordability. This review aimed to 
+identify the fundamental objectives of these strategies, such as increasing housing inventory, stabilizing rental prices, 
+and enhancing accessibility for low-income households.  While all the strategies sought to bring more affordable housing, some of the strategies would do so by
+encouraging more building and thereby increasing the number of housing units.  The result of this review is a list of strategies, their respective goal, and
+the primary category they fall into is detailed in the following table. 
+
+{{< include _strategies.qmd >}}
+:Strategic Interventions Used in Oregon
+{.striped}
+
+### Data Sources and Acquisition
+
+#### Identifying and Collecting Housing, Demographic, and Economic Indicators
+
+We initially set out to find individual house sale data for as many years as possible.  We also wanted to collect: 
+
+* historical land prices - land price plays a big factor in the ultimate affordability of a house,
+* construction costs - also play a big role in what a builder will charge for a home, 
+* time to construct a house - this is important for 2 major reasons 1) the longer the builder needs to hold on to the land, the more expensive the construction becomes and 2) being able to build a home more quickly brings more inventory to the market sooner, helping with demand
+* median income for a county - to be able to assess the affordability of a housing or rent payment over time
+* number of housing units - to have an indication of the housing level and assess its relationship to median sale price in an area
+
+
+In this section, we address the significant lack of publicly available
+housing data, which has posed considerable challenges for our research.
+Although we successfully integrated ten years of Redfin data with
+demographic and economic indicators, there remain several critical data
+points we were unable to obtain. Notably, data extending beyond ten
+years did not exist.  The intersection of Redfin data which
+in ernest in 2013 with the Census ACS 5-year estimates, which only go as far as the end of 2022
+limited the timeline of our data.  Also missing from the public domain were a number of interesting data points, such as 
+historical land prices, construction costs, and timelines for
+housing development.  This data could be present behind paywalls like 
+ATTOM (https://www.attomdata.com/) and Zillow Research Data (https://www.zillow.com/research/data/), but we were unable 
+to identify the full complement of features they might have available.  Both sites wanted to schedule a sales meeting
+to discuss a contract before discussing what data we might be able to obtain, so we decided to find what we could in the
+public domain.  The Oregon State website was also a disappointing dead-end, only providing data on a dashboard or through PDF format
+in increments that did not work for this project, being either in large jumps (10 year increments) or not many years available.  The data we could find 
+on the state site could be also be obtained in other ways, such as through the U.S. Census.
+These gaps represent missed opportunities that could have enhanced the comprehensiveness of our
+dataset. 
+
+#### Housing Data - Redfin Data Center
+
+Redfin provides a comprehensive dataset accessible through its data
+center, offering both graphical representations and downloadable files.
+The dataset spans from 2012 to the present and allows for geographic
+filtering specific to Oregon counties, although 2013 data was much more complete. 
+We extracted data for all available years in June, 2024, encompassing all property types, and used raw values
+rather than year-over-year comparisons or seasonally adjusted figures.  We found missing data, for some sparsely
+populated counties.  Sometimes the entire month row would be missing and other times one or more features were missing and indicated with NA.
+House sales are rare for some counties and filling in 0 for missing variables made sense while not trying to add
+additional rows was most appropriate.
+
+| Feature                | Description                                                                                                                                                                                                |
+|--------------|----------------------------------------------------------|
+| `county`               | Oregon county                                                                                                                                                                                              |
+| `date`                 | Date in yyyy/mm/dd format                                                                                                                                                                                  |
+| `inventory`            | Total number of active listings on the market on the last day of the time period.                                                                                                                          |
+| `median_sale_price`    | The median final sale price of homes that sold during a given time period                                                                                                                                  |
+| `homes_sold`           | Count of closed home sales during a given time period                                                                                                                                                      |
+| `new_listings`         | Total number of homes listed for sale during a given time period                                                                                                                                           |
+| `days_on_market`       | The median number of days homes that went under contract during a given time period spent on the market before going under contract                                                                        |
+| `average_sale_to_list` | A measurement of how close the typical home's final price was to its original list price. It is calcualted as an average of the ratio each home sold during a given period price divided by its list price |
+
+: Redfin Datacenter {.striped tbl-colwidths="\[25,75\]"}
+
+**All features provided by**
+<a href="https://www.redfin.com/news/data-center/" target="_blank">Redfin
+DataCenter</a>
+
+#### Demographic Data
+
+The American Community Survey (ACS) 5-year estimates, conducted by the
+U.S. Census Bureau, offer extensive demographic data on various aspects
+of life in U.S. communities. From this source, we obtained county-level
+estimates for median income, rental vacancy rates, property taxes, and
+the number of housing units per year. Historical population estimates
+for each county were sourced from the Portland State University
+Population Research Center. The U.S. Department of Housing and Urban
+Development (HUD) user website provided yearly 50th percentile rent
+estimates for each county. For our analysis, we utilized the 2-bedroom
+rental estimates for each county and year.  We found no missing data in the U.S. Census
+5-year estimate tables, HUD data, or the Portland State University's Population Research Center.
+
+| Feature               | Description                                                                | Source                                                                                                                                    |
+|-----------------------|----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `county`              | Oregon county                                                              | All table sources                                                                                                                         |
+| `year`                | Date sampled or calculated in yyyy format                                  | All table sources                                                                                                                         |
+| `median_income`       | Estimated median income per county - inflation adjusted US Dollars         | <a href="https://data.census.gov/table/ACSST5Y2019.S1901?q=median%20income%20oregon%20counties" target="_blank">Census variable S1901</a> |
+| `median_rent_2bdrm`** | Median rent for a 2 bedroom dwelling                                       | <a href="https://www.huduser.gov/portal/datasets/50per.html" target="_blank">HUDuser.gov</a>                                              |
+| `num_housing_units`   | Estimated total number of housing units per county                         | <a href="https://data.census.gov/table?q=B25001%20oregon%20counties" target="_blank">Census variable B25001</a>                           |
+| `population`          | Estimated population per county                                            | <a href="https://www.pdx.edu/population-research/population-estimate-reports" target="_blank">Portland State Population Research</a>      |
+| `rental_vacancy`**    | Estimated percentage of rental vacancy rate per county                     | <a href="https://data.census.gov/table?q=CP04%20oregon%20counties" target="_blank">Census variable CP04</a>                               |
+| `property_tax`**      | Estimated median real estate tax paid for units with a mortgage per county | <a href="https://data.census.gov/table?q=B25103%20oregon%20counties" target="_blank">Census variable B25103</a>                           |
+
+: Demographic Data By Year and County  {.striped
+tbl-colwidths="\[25,75\]"}
+
+**Values stored, but ultimately not used.  See [Appendix](capstone.html#database-features-removed-from-analysis)
+
+#### Economic Indicator
+
+The Federal Reserve Bank of St. Louis offers a robust collection of
+economic data, from which we obtained historical national data on
+30-year mortgage rates. While county or state-level mortgage rate data
+was unavailable, we posited that state-level figures would approximate
+the national averages, with similar trends observable across the data.  As this 
+assumption could lead to a false conclusion if Oregon's monthly average rate was very 
+different, we only used this piece of data to help view general trends in house payment 
+affordability over time.
+
+| Feature                         | Description                                           |
+|---------------------------------|---------------------------------------|
+| `date`                          | Date in yyyy/mm/dd format                             |
+| `monthly_average_mortgage_rate` | National average mortgage rate for a 30 year mortgage |
+
+: National Monthly Mortgage Rate Data - **Feature provided by**
+<a href="https://fred.stlouisfed.org/series/MORTGAGE30US" target="_blank">Federal
+Reserve Bank St. Louis</a> {.striped}
+
+<br><br>
+
+### Data Acquisition and Cleaning
+
+Several sources, such as census.gov, provide APIs for data access.
+However, we found it more practical to use their table explorer to
+download CSV files. The sheer volume of variables on census.gov
+necessitates an advanced search mechanism, including an AI-assisted
+search tool that offers intelligent data suggestions based on user
+queries. Once the desired table configuration is achieved, the tool can
+generate an API call for future data retrieval. Although this feature is
+beneficial for obtaining up-to-date data, it was not essential for our
+current project.
+
+We encountered a variety of data formats from different sources, which
+necessitated significant data cleaning and preparation. A notable
+challenge was managing data provided as separate files for each year,
+resulting in an extensive number of files for our ten-year study period.
+To streamline this process, we concatenated these files, which involved
+transposing tables and manual data manipulation. We later automated this
+process with a Python script to make it more efficient.
+
+Standardizing county names and removing extraneous characters, such as
+dollar signs from prices, were additional tasks required to harmonize
+the dataset. Despite these challenges, the data was generally
+well-structured. In the end, we were able to go from disparate data
+sources into a cohesive set of CSVs that could be imported into a Postgres 
+database.
+
+### Data Storage
+
+These datasets were imported into temporary tables using an SQL script,
+facilitating the creation of a comprehensive database through joins
+based on county and year.
+
+
+
+The final Entity-Relationship Diagram (ERD) is
+illustrated in the figure below.
+
+
+![Entity Relationship Diagram](images/data/erd-updated.png){#fig-erd}
+
+
+The capstone redfin and mortgage tables were straight imports from the cleaned CSVs.
+The capstone income_population_housingunits_rent table was created with a series of left joins
+starting with the income temporary table, then individually joining the population, 
+housingunits, rent, rental_vacancy, and property_tax tables on county and year.
+
+*  redfin table had a date format of yyyy-mm-dd (dates were always first of each month)
+*  mortgage table had a date format of yyyy-mm-dd (dates were always first of each month)
+*  income_population_housingunits_rent had a date format of yyyy
+
+By joining our resulting tables, were able to use this database to create the initial dataset, 
+output to a CSV file, to use for our analysis. The resulting dataset was created by joining the tables seen in the ERD.
+Starting with the redfin table, we joined the mortgage data on date the columns.  The income_population_housingunits_rent
+table was then right joined by year (extracting year from the redfin table date and comparing it to the income_population_housingunits_rent table).
+
+
+
+### Feature Engineering
+
+We were able to obtain a number of features related to affordability,
+including current rental prices, national monthly mortgage rates,
+median_sales_prices. These allowed us to create new variables
+specifically targeted to affordability. All of these operations were performed
+on the dataset defined above in Python and the resulting features were added to the Pandas dataframe to continue
+the analysis.
+
+###### **Reconciling Monthly and Yearly Data**
+
+We noticed odd things when we plotted monthly vs yearly data in our
+scatter plot graphs. Our data took on clumped column shapes. And it did
+not seem representative of what happens in reality. A county's median
+income does not suddently increase from one year to the next, for
+example. Many of these variables will be different over smaller
+increments of time. While consulting with our project statistician, Hank
+Ibser, he suggested that smoothing the transition of the yearly
+variables by taking the average change and cumulatively increasing (or
+decreasing) the feature amount over the number of months of county data
+would be a better way to deal with the features than to leave large
+jumps from year to year. This left the question of what to do with the
+last year of data, since we do not have numbers beyond 2022. We decided
+to average all the previous deltas and apply that as our step up or
+down, then proceeded to multiply that by the number of months of data we
+had and apply the incremental steps to the original rows. We smoothed
+out the transitions in this way for the following variables:
+`median_income`, `population`, `num_housing_units`, `median_rent_2bdrm`,
+and `rental_vacancy`.
+
+Example plots of before and after:
+
+::: {#fig-smoothed layout-ncol=2}
+
+![Before Smoothing](images/before_smoothing.png){#fig-before_smoothing}
+
+![After Smoothing](images/after_smoothing.png){#fig-after_smoothing}
+
+Feature Engineering: Variable Smoothing
+:::
+
+These feature transitions were smoothed using the following formula:
+
+For each county, sorted by ascending date, for each year except the last represented:
+
+$$ monthly\_avg = \frac{next\_year\_value - current\_year\_value}{n} $$
+
+::: {text-align="center"}
+$$ smoothed\_month\_of\_year = \sum_{i = 1}^{n}i\times{(monthly\_avg)} + month\_of\_year $$
+:::
+
+For each county, sorted by ascending date, last year of rows:
+
+::: {text-align="center"}
+$$ smoothed\_month\_of\_year = \sum_{i = 1}^{n}i\times{(avg\_mc)} + month\_of\_year $$
+:::
+
+Where:<br> 
+<i>n</i> = number of rows of data for the county in a year<br> 
+<i>next\_year\_value</i> = the first value of the next year for the feature<br> 
+<i>current\_year\_value</i>= the first value of the current year for the feature<br> 
+<i>monthly\_avg</i> = average monthly change for the year<br>
+<i>avg\_mc</i> = average monthly change for all previous years<br>
+
+###### **Monthly Housing Payment**: `monthly_housing_payment`
+
+We then created a variable to hold the median monthly mortgage payment,
+using the following formula (Mortgage Payment Calculator - NerdWallet, 2023) and
+validated against the online calculator at the same site:
+
+::: {text-align="center"}
+$$ M = .8\times\frac{I(1 + I)^N }{(1 + I)^N − 1} $$
+:::
+
+Where:<br> <i>M</i> = `monthly_housing_payment`<br> <i>P</i> =
+`median_sale_price`<br> <i>I</i> = `monthly_avg_mortgage_rate`<br>
+<i>N</i> = 360 (the number of total payments over 30 years)<br>
+
+We made this calculation based on a 20% down payment and a 30-year fixed
+term. This is a big assumption, but gives us a baseline to look at
+affordability.
+
+###### **Monthly Median Income**: `monthly_median_income`
+
+::: {text-align="center"}
+$$ mmi = \frac{mi}{12} $$
+:::
+
+Where:<br> <i>mmi</i> = `monthly_median_income`<br> <i>mi</i> =
+`median_income`<br>
+
+###### **Monthly Affordable Housing Payment**: `monthly_affordable_housing_payment`
+
+This feature holds the maximum housing payment considered affordable,
+based on the HUD's affordability threshold of 30%.
+
+::: {text-align="center"}
+$$ mahp = .3 \times mmi $$
+:::
+
+Where:<br> <i>mahp</i> = `monthly_affordable_housing_payment`<br>
+<i>mmi</i> = `median_income`<br>
+
+### Resultant Shape of Dataset Used for Analysis
+
+We gathered data and engineered features for different uses that will be detailed in the [Analysis] section below, but
+we did not use every variable gathered for that analysis.  For understanding of our resultant dataset going forward, we
+used the following features.  The resulting analysis dataset consists of 4050 rows and contains data collected from January 2013 to December 2022.
+
+| Variable Name                          | Purpose                                                                                                                              |
+|----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| `county`                               | Used to differentiate local housing markets                                                                                          |
+| `date`                                 | Time-series and forecasting                                                                                                          |
+| `median_sale_price`                    | Predictor variable                                                                                                                   |
+| `homes_sold`                           | Indicator of demand in the housing market                                                                                            |
+| `new_listings`                         | Indicator of demand and inventory trents                                                                                             |
+| `inventory`                            | Indicator of demand in the housing market                                                                                            |
+| `days_on_market`                       | Indicator of demand in the housing market                                                                                            |
+| `average_sale_to_list`                 | Indicator of demand in the housing market                                                                                            |
+| `monthly_avg_mortgage_rate`            | National average mortgage rate                                                                                                       |
+| `median_income`                        | Estimated median yearly income of the county for a given month                                                                       |
+| `population`                           | Estimated population of the county                                                                                                   |
+| `num_housing_units`                    | Estimated number of housing units per county                                                                                         |
+| `monthly_housing_payment`**            | Prinicpal and Interest of a 30-year mortgage with 20% downpayment on the median sale price of a county.  Indicator of affordability. |
+| `monthly_median_income`**              | Estimated median montly income for a county                                                                                          |
+| `monthly_affordable_housing_payment`** | Estimated maximum affordable housing payment                                                                                         |
+:Analysis Dataset {.striped}
+
+** Due to their direct correlation with other features in the dataset, these 3 features were only used with analyzing trends, not with Linear Regression or Random Forest Regressor models.
+
+### Data Ethics Statement
+
+This dataset consists of aggregated time series data from various sources, and we acknowledge several ethical considerations and potential biases that users should be aware of:
+
+* Data Aggregation: While aggregation protects individual privacy, it may obscure nuances and potentially introduce biases.
+* Missing Data: Our dataset contains gaps due to incomplete reporting or the unavailability of data. We've documented the dataset suffering from incomplete data and discussed how we deal with the situations that arise.
+* Availability Bias: Some data sources were inaccessible behind paywalls, which may have introduced an availability bias. Our dataset might over-represent information from sources with more resources or those willing to share data openly. We've attempted to mitigate this by incorporating a diverse range of sources where possible.
+* Preprocessing Bias: The data cleaning and normalization procedures we've employed, while necessary for analysis, may have inadvertently emphasized certain patterns or diminished others. We've documented all preprocessing steps to ensure transparency, but we encourage users to critically evaluate how these procedures might impact their specific use cases.
+* Time Series Considerations: As a time series dataset, there are potential issues with seasonal biases, trend-related challenges, and autocorrelation. We've documented the full time range of the data and any known external factors that may have influenced the data during specific periods.
+* Estimated Data:  Estimations in data are inherently biased.  We have done the best we could with our conclusions and limitations to take into account that much of our data comes from an uncertain collection.
+

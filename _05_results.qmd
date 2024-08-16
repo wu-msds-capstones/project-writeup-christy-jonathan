@@ -16,10 +16,10 @@ What we found early on in the analysis was that there is a big difference in how
 depending on the county density.  For example, the following scatter plot clusters are from Washington and Wheeler Counties.
 This is a trend that will show up all through the analysis.
 
-::: {#fig-scatter layout-ncol=2}
-![Washington County Scatterplots](images/washington_scatter.png){#wash-scatter width=300}
+:::{#fig-scatter layout-ncol=2}
+![Washington County Scatterplots (Click to View)](images/washington_scatter.png){#wash-scatter width=300}
 
-![Wheeler County Scatterplots](images/wheeler_scatter.png){#wheeler-scatter width=300}
+![Wheeler County Scatterplots (Click to View)](images/wheeler_scatter.png){#wheeler-scatter width=300}
 :::
 
 
@@ -57,8 +57,8 @@ fig = make_subplots()
 
 # Add traces for the initial county (first county in the list)
 initial_county_data = housing_data_engineered[housing_data_engineered['county'] == counties[0]]
-fig.add_trace(go.Scatter(x=initial_county_data['date'], y=initial_county_data['monthly_housing_payment'], mode='lines', name='Monthly Median Mortgage P&I Payment'))
-fig.add_trace(go.Scatter(x=initial_county_data['date'], y=initial_county_data['monthly_affordable_housing_payment'], mode='lines', name='Monthly Affordable Housing Payment'))
+fig.add_trace(go.Scatter(x=initial_county_data['date'], y=initial_county_data['monthly_housing_payment'], mode='lines', name='Monthly Median Mortgage P&I Payment', line_color='#1f77b4'))
+fig.add_trace(go.Scatter(x=initial_county_data['date'], y=initial_county_data['monthly_affordable_housing_payment'], mode='lines', name='Monthly Affordable Housing Payment', line_color='#ff7f0e'))
 
 # Update plot sizing
 fig.update_layout(
@@ -95,9 +95,9 @@ fig.update_layout(margin=dict(t=100, b=50))
 
 fig.update_layout(legend=dict(
     yanchor="top",
-    y=0.99,
+    y=1.05,
     xanchor="left",
-    x=0.01,
+    x=-.07,
 
 ))
 
@@ -122,7 +122,7 @@ fig.add_annotation(
 fig.update_layout(
     title='Oregon Housing Is Unaffordable<br><sup>Oregon 30-Year Mortgage Principal and Interest Payments Are Outpacing Affordability</sup>',
     xaxis_title='Date',
-    yaxis_title='Monthly Mortgage Payment<br>Monthly Affordable Housing Payment <br> (U.S. Dollars)',
+    yaxis_title='Monthly Mortgage Payment<br>Monthly Affordable Housing Payment <br> (Inflation Adjusted U.S. Dollars)',
 )
 fig.update_layout(yaxis_tickprefix = '$')
 fig.update_traces(mode="lines", hovertemplate=None)
@@ -180,36 +180,11 @@ Findings:
 
 **Random Forest Model - Feature importances, decision tree, table of results** 
 
-Model test statistics for Washington County:
 
-| Metric                                | Value                 |
-|---------------------------------------|-----------------------|
-| Mean Absolute Error (MAE)             | 7.522343744087813     |
-| Mean Squared Error (MSE)              | 104.32109361078466    |
-| Root Mean Squared Error (RMSE)        | 104.32109361078466    |
-| Mean Absolute Percentage Error (MAPE) | 0.01931186065104155   |
-| Explained Variance Score              | 0.9885975711129124    |
-| Max Error                             | 46.91661360861349     |
-| Mean Squared Log Error                | 0.0006227441802917824 |
-| Median Absolute Error                 | 6.501995768773753     |
-| R^2                                   | 0.9885829946465465    |
-| Mean Poisson Deviance                 | 0.2447723229456236    |
-| Mean Gamma Deviance                   | 0.0006260260341751169 |
+![Significant Feature Count in Oregon Counties](images/sig_feature_county_count.png){#fig-sig-feature-count-rf}
 
-Model test statistics for Wheeler County:
+![Significant Feature Representation in Percentage of Homes Sold in Oregon](images/sig_feature_county_represent.png){#fig-sig-feature-representation-rf}
 
-| Metric                                | Value               |
-|---------------------------------------|---------------------|
-| Mean Absolute Error (MAE)             | 74.479156903197     |
-| Root Mean Squared Error (RMSE)        | 8274.479156903197   |
-| Mean Absolute Percentage Error (MAPE) | 0.6771181405050725  |
-| Explained Variance Score              | 0.6352815417171738  |
-| Max Error                             | 321.35144577975683  |
-| Mean Squared Log Error                | 0.3436727515864253  |
-| Median Absolute Error                 | 67.40806586081992   |
-| R^2                                   | 0.6351549430802184  |
-| Mean Poisson Deviance                 | 40.06686486557459   |
-| Mean Gamma Deviance                   | 0.27567274349559723 |
 
 Random Forest Feature Importance:
 
@@ -219,3 +194,35 @@ Resultant Forest Decsion Tree:
 
 ![Random Forest Decision Tree](images/random_forest-tree.png){#fig-rf-decision-tree}
 
+
+```{python}
+#| label: tbl-ohe_example
+#| tbl-cap: 'One-hot vectorization example'
+#| tbl-column: body
+#| tbl-pos: H
+
+import pandas as pd
+import numpy as np
+
+weather_df = pd.DataFrame(np.random.rand(10,2)*5,
+                          index=pd.date_range(start="2021-01-01", periods=10),
+                          columns=["Tokyo", "Beijing"])
+
+def rain_condition(v):
+    if v < 1.75:
+        return "Dry"
+    elif v < 2.75:
+        return "Rain"
+    return "Heavy Rain"
+
+def make_pretty(styler):
+    styler.set_caption("Weather Conditions")
+    styler.format(rain_condition)
+    styler.format_index(lambda v: v.strftime("%A"))
+    styler.background_gradient(axis=None, vmin=1, vmax=5, cmap="YlGnBu")
+    return styler
+
+weather_df
+```
+
+Testing python output

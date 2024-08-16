@@ -1,5 +1,43 @@
 # Reference
 
+Wikipedia Contributors. (2019, June 19). Right to housing. Wikipedia; Wikimedia Foundation. https://en.wikipedia.org/wiki/Right_to_housing
+
+Hitting Home: Housing Affordability in the U.S. | Econofact. (2024, March 14). Econofact.org. https://econofact.org/hitting-home-housing-affordability-in-the-u-s
+
+Ramakrishnan, J. (2022, June 21). Estimated 168,000 households priced out of Portland area real estate market in just 6 months. Oregonlive. https://www.oregonlive.com/business/2022/06/estimated-168000-households-priced-out-of-portland-area-housing-market-in-just-6-months.html
+
+Harvel, J. (2023, June 7). Fifty Years of Unique Land Use. The Source Weekly - Bend; The Source Weekly - Bend. https://www.bendsource.com/news/fifty-years-of-unique-land-use-19291486
+
+Metro. (2018, June 22). Urban growth boundary. Metro. https://www.oregonmetro.gov/urban-growth-boundary
+
+Phillips, J., & Goodstein, E. (2000). Growth management and housing prices: The case of Portland, Oregon. Contemporary Economic Policy, 18(3), 334-344.
+
+A Look Back At Oregon’s Housing Crisis. (n.d.). Opb. https://www.opb.org/news/series/greetings-northwest/a-look-back-at-oregons-housing-crisis/
+
+Oregon Legislative Assembly. (2007). House Bill 3337. 74th Oregon Legislative Assembly.
+
+Oregon Legislative Assembly. (2016). Senate Bill 1533. 78th Oregon Legislative Assembly.
+
+Oregon Legislative Assembly. (2019). House Bill 2001. 80th Oregon Legislative Assembly.
+
+A housing shortage is testing Oregon’s pioneering land use law. Lawmakers are set to tweak it. (2024, February 25). AP News. https://apnews.com/article/oregon-land-use-law-urban-growth-boundary-housing-d85c2413f169cd02cbf6b15fd9c95329
+
+Mortgage Payment Calculator - NerdWallet. (2023). NerdWallet. https://www.nerdwallet.com/mortgages/mortgage-payment-calculator
+
+Elliott, M. (2006). Regression Methods in Biostatistics: Linear, Logistic, Survival, and Repeated Measures Models Edited by Vittinghoff, E., Glidden, D. V., Shiboski, S. C., and Mcculloch, C. E. Biometrics, 62(4), 1271–1272. https://doi.org/10.1111/j.1541-0420.2006.00596_3.x
+
+Permutation Importance vs Random Forest Feature Importance (MDI). (n.d.). Scikit-Learn. https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html
+
+Brownlee, J. (2017, March 23). How to Make Out-of-Sample Forecasts with ARIMA in Python. Machine Learning Mastery. https://machinelearningmastery.com/make-sample-forecasts-arima-python/
+
+
+
+
+
+
+
+
+
 Oregon’s Homeownership Rate. (n.d.). https://ipropertymanagement.com/research/homeownership-rate-by-state?u=%2Fresearch%2Fhomeownership-rate-by-state#oregon.
 
 City of Portland. (2017). Inclusionary Housing. Retrieved from City of Portland website
@@ -29,3 +67,5 @@ U.S. Census Bureau. "COMPARATIVE HOUSING CHARACTERISTICS." American Community Su
 U.S. Census Bureau. "MORTGAGE STATUS BY MEDIAN REAL ESTATE TAXES PAID (DOLLARS)." American Community Survey, ACS 5-Year Estimates Detailed Tables, Table B25103, https://data.census.gov/table/ACSDT1Y2019.B25103?q=B25103 oregon counties. Accessed on July 28, 2024.
 
 U.S. Census Bureau. "INCOME IN THE PAST 12 MONTHS (IN 2011 INFLATION-ADJUSTED DOLLARS) ." American Community Survey, ACS 5-Year Estimates Subject Tables, Table S1901, https://data.census.gov/table/ACSST1Y2011.S1901?q=median household income in oregon counties. Accessed on July 28, 2024.
+
+Regis, F. (2022). xboard.dev - Interrupted Time Series (ITS) in Python. Xboard.dev. https://www.xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/index.html

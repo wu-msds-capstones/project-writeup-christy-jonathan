@@ -1,0 +1,13 @@
+| **Strategy/Goal**                                    | **Direct Associations**                        | **Indirect Associations**                  |
+|:-----------------------------------------------------|:-----------------------------------------------|:-------------------------------------------|
+| **Inclusionary Zoning**                              | `num_housing_units`                            | `median_income`, `inventory`               |
+| **Density Bonuses**                                  | `num_housing_units`                            | `population`                               |
+| **Tax Increment Financing (TIF)**                    | `median_salprice`, `new_listings`, `inventory` | `population`, `homes_sold`                 |
+| **Low-Income Housing Tax Credits IHTC)**             | `num_housing_units`                            | `median_income`                            |
+| **Community Land Trusts (CLTs)**                     | `num_houng_units`                              | `population`                               |
+| **Public-Private Partnerships**                      | `num_housing_units`, `homes_sold`              | `population`                               |
+| **Accessory Dwelling Units (ADUs)**                  | `num_housing_units`                            | `median_income`                            |
+| **Streamlining Permitting and Reducing Regulations** | `days_on_market`, `new_listings`               | `median_sale_price`, `inventory`           |
+| **Land Banking**                                     | `num_housing_units`                            | `population`                               |
+| **Increased Funding for Affordable Housing Program** | `num_housing_units`                            | `median_income`, `population`, `inventory` |
+| **Supportive Housing**                               | `num_housing_units`                            | `population`                               |

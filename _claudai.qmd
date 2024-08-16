@@ -1,0 +1,15 @@
+| **Strategy/Goal**                                    | **Directly Affected Features** | **Indirectly Affected Features**                                                                                             |
+|------------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| **Inclusionary Zoning**                              | None                           | `inventory`, `median_sale_price`, `homes_sold`, `new_listings`, `num_housing_units`                                          |
+| **Density Bonuses**                                  | None                           | `inventory`, `median_sale_price`, `homes_sold`, `new_listings`, `num_housing_units`                                          |
+| **Tax Increment Financing (TIF)**                    | None                           | `median_sale_price`, `new_listings`, `num_housing_units`, `monthly_average_mortgage_rate`                                    |
+| **Low-Income Housing Tax Credits (LIHTC)**           | None                           | `inventory`, `median_sale_price`, `new_listings`, `num_housing_units`, `monthly_average_mortgage_rate`                       |
+| **Community Land Trusts (CLTs)**                     | None                           | `inventory`, `median_sale_price`, `new_listings`, `num_housing_units`                                                        |
+| **Public-Private Partnerships**                      | None                           | `inventory`, `median_sale_price`, `new_listings`, `num_housing_units`                                                        |
+| **Accessory Dwelling Units (ADUs)**                  | None                           | `inventory`, `median_sale_price`, `new_listings`, `num_housing_units`                                                        |
+| **Streamlining Permitting and Reducing Regulations** | None                           | `new_listings`, `days_on_market`, `median_sale_price`, `homes_sold`                                                          |
+| **Land Banking**                                     | None                           | `inventory`, `new_listings`, `num_housing_units`                                                                             |
+| **Increased Funding for Affordable Housing Program** | None                           | `inventory`, `median_sale_price`, `new_listings`, `num_housing_units`, `median_income` (long-term), `population` (long-term) |
+| **Supportive Housing**                               | None                           | `inventory`, `new_listings`, `num_housing_units`, `population`, `median_income` (long-term)                                  |
+
+Note: All strategies may indirectly affect average_sale_to_list to varying degrees.

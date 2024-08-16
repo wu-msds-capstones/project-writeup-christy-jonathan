@@ -20,8 +20,8 @@ lightbox: true
 
 {{< include _01_intro.qmd >}}
 {{< include _02_background.qmd >}}
-{{< include _04_data.qmd >}}
-{{< include _03_methods.qmd >}}
-{{< include _05_results.qmd >}}
+{{< include _03_data.qmd >}}
+{{< include _04_analysis.qmd >}}
 {{< include _06_conclusions.qmd >}}
 {{< include _07_references.qmd >}}
+{{< include _08_appendix.qmd >}}
