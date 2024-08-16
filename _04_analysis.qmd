@@ -357,8 +357,9 @@ housing_data_engineered = pd.read_csv(file_path)
 
 housing_data_engineered
 ```
-<br><br>
-Using the ARIMA function in the statsmodels.tsa.arima.model library, we obtained the following results:
+
+### SARIMAX ITS Model Results
+The analysis of the ARIMA model fit, as illustrated in @fig-arima-fit, reveals a modest yet statistically significant decline in housing units (D = -4833.06, p < 0.001). Concurrently, a slight, statistically non-significant increase is observed on a month-over-month basis (P). These findings are visually represented in @fig-timeseries and @fig-timeseries-zoom, which depict the time series data and a zoomed-in view, respectively. The counterfactual trajectory, represented by the upper line, illustrates the potential outcome in the absence of the observed effect, while the lower blue line denotes the actual observed data.
 
 ```{python}
 #| label: fig-arima-fit
@@ -366,17 +367,11 @@ Using the ARIMA function in the statsmodels.tsa.arima.model library, we obtained
 import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
 
-
 file_path = 'arima.csv'
 df = pd.read_csv(file_path)
 arima_results = ARIMA(df["Y"], df[["T","D","P"]], order=(1,0,0)).fit()
-print(arima_results.summary())
-print("")
+arima_results.summary()
 ```
-
-<br><br>
-The analysis of the ARIMA model fit, as illustrated in @fig-arima-fit, reveals a modest yet statistically significant decline in housing units (D = -4833.06, p < 0.001). Concurrently, a slight, statistically non-significant increase is observed on a month-over-month basis (P). These findings are visually represented in @fig-timeseries and @fig-timeseries-zoom, which depict the time series data and a zoomed-in view, respectively. The counterfactual trajectory, represented by the upper line, illustrates the potential outcome in the absence of the observed effect, while the lower blue line denotes the actual observed data.
-
 
 ![SARIMAX Counterfactual Forecast vs Model Predictions](images/timeseries.png){#fig-timeseries}
 
