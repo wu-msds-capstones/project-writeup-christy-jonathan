@@ -1,6 +1,6 @@
 # Limitations
 
-Despite our diligent research efforts, neither investigator possesses expertise in the housing market or legislative policy, which may lead to potential misinterpretations. We have made every effort to present our findings accuratley and avoid misrepresntations.
+Despite our diligent research efforts, neither investigator possesses expertise in the housing market or legislative policy, which may lead to potential misinterpretations. We have made every effort to present our findings accurately and avoid misrepresentations.
 
 The COVID-19 pandemic significantly impacted the housing market in the latter years of our dataset, complicating the assessment of strategic interventions. Although we observed minor average decrease in production following the implementation of HB 2001, the pandemic's effects might have masked more severe impacts that could have occurred without this legislation. Future re-evaluation of the time series analysis, once additional data becomes available, may provide further insights.
 

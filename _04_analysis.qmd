@@ -2,7 +2,7 @@
 
 #### Rental vs Home Ownership - An Early Project Decision Point
 This study primarily investigated unaffordable housing in Oregon, considering both rental and homeownership sectors. To determine the focus between rental unit prices and current home sales, we analyzed current affordability strategies in conjunction with our data to identify the most pressing need. According to the St. Louis Federal Reserve, approximately 64.1% of Oregon's housed population are homeowners, with the remaining 35.9% being renters (Federal Reserve Bank of St. Louis, 2024). Our county-by-county evaluation of median_rent_2bdrm against monthly_affordable_housing_payment revealed that rental prices generally remain below the maximum affordable threshold. Consequently, we opted to concentrate our subsequent analysis on home sale prices. For context, we've included comparative data illustrating the recent decline in housing payment affordability for homeowners.  You can see in the graph below (@fig-rent-affordability) that rental prices sit comfortably under the maximum affordable threshold.  
-Becuase of this, we decided to focus on home sale prices for the rest of our analysis.  For reference and comparison, we have also included (@fig-mortgage-affordability) which shows how housing payment affordability has dwindled in recent years, while rent has stayed relatively stable.
+Because of this, we decided to focus on home sale prices for the rest of our analysis.  For reference and comparison, we have also included (@fig-mortgage-affordability) which shows how housing payment affordability has dwindled in recent years, while rent has stayed relatively stable.
 <br><br>
 
 ```{python}
@@ -237,7 +237,7 @@ Scatter Plots over Stratified by Population Percentile
 
 To optimize our analysis of housing affordability through the lens of our predefined dataset features, we implemented a strategic data reduction approach. We elected to exclude approximately 60% of counties from our analysis, retaining only those at or above the 40th percentile in population. This methodological decision was predicated on our finding that the retained subset still encompassed 96% of the housing market, while effectively eliminating numerous counties that demonstrated poor model fit with our chosen features. @fig-all-correlation-subset-counties illustrates the resulting correlation heatmap, revealing a more cohesive band of correlated features. The selection of the 40th percentile threshold was determined through an iterative process, aimed at maximizing the exclusion of poorly-fitting counties while maintaining a substantial and representative proportion of the housing market. This approach was designed to be both comprehensible and replicable, utilizing a clear percentile cutoff. Our analysis indicated that the 60th percentile provided an optimal balance between noise reduction and housing market representation. However, we acknowledge the potential validity of extending this threshold to the 70th percentile, which would incorporate an additional 2% of the housing market.
 
-![Correlations for 60% of Counties, Oredered by Population (left to right, most to least populated)](images/median_sale_price_correlation_subset.png){#fig-all-correlation-subset-counties}
+![Correlations for 60% of Counties, Ordered by Population (left to right, most to least populated)](images/median_sale_price_correlation_subset.png){#fig-all-correlation-subset-counties}
 
 
 ### Trend Analysis
@@ -327,7 +327,7 @@ In our analytical approach, we focused on identifying policy interventions that 
 
 ![Intersection of Feature Importances, Significant Coefficients, and Strategies](images/venn.drawio.png){#fig-venn width=300}
 
-### Interrupted Time Series as a kind of A/B Test When an A/B Test is Not an Option
+### Interrupted Time Series for A/B Testing Interventions
 
 Interrupted Time Series (ITS) analysis is a quasi-experimental method employed to evaluate the impact of an intervention on a specific outcome variable within a single population over time (Wagner et al., 2002). This approach involves systematically tracking data points before and after a clearly defined intervention, with the "interruption" representing the intervention's implementation. The effects are assessed by examining changes in the level and slope of the time series, as well as the statistical significance of intervention parameters (Bernal et al., 2017). The robustness of an ITS model generally improves with an increased number of observations both pre- and post-intervention (Penfold & Zhang, 2013). While ITS design effectively controls for pre-existing trends, mitigating concerns related to between-group differences, it remains susceptible to time-varying confounders, such as concurrent interventions or events that may influence the outcome of interest (Shadish et al., 2002).
 
