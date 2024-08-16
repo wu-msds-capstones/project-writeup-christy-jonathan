@@ -1,15 +1,17 @@
+# Limitations
+
+
+
+
+
 # Conclusions
 
-Our results depend on what kind of counties we are looking at.
-Sparsely populated county home sales are mostly land sales and not at all like the dynamics
-seen in densely populated counties.  A one-fit model is inadequate to cover all Oregon counties.
+The objective of this study was to investigate strategies that could potentially address the imbalance between housing demand and the need for affordable housing in Oregon. While the research did not conclusively demonstrate a specific strategy capable of mitigating the housing crisis, several noteworthy findings emerged from the analysis.
 
-However, these sparsely populated counties also do not represent a large portion of the housing market.  The data
-for these counties is often missing and, when inspected, you find that the "house" sales reported in by Redfin would
-be more accurately described as "land" sales.  Our data does not seem to fit these kinds of transactions or model
-why they would be rising in price.
+The observed inter-county disparities in our data suggest that housing strategies should be researched and implemented at a local level, allowing for the incorporation of area-specific characteristics to inform decision-making processes.
 
-The evidence we found that a positive increase in the number of housing units is correlated to an increase in housing
-prices is interesting.  We found several articles suggesting that building more housing positively affects affordability
-depending on where you build - that not all places and all areas will see a price relief with more housing units.
-We will dig into this more in the next week.
+A nuanced finding in our research, indicated by the alternating directionality of the correlation between housing unit quantity and median sales price, suggests that increasing housing density may only effectively reduce housing prices when implemented in appropriate locations. The introduction of new housing developments in high-demand areas risks contributing unaffordable units to the market.
+
+The COVID-19 pandemic significantly impacted the housing market during the latter years of our dataset, rendering the identification of effects from strategic interventions challenging. Despite observing a minor average decrease in production following the implementation of HB 2001, it is plausible that the situation could have been more severe in the absence of this legislation. A re-evaluation of the time series analysis after an extended period may yield additional insights.
+
+This study underscores the importance of high-quality, comprehensive data collection at the state level, with an emphasis on improved accessibility and public availability. Data collection can be optimized at the local level, where housing construction, purchases, and sales occur. The democratization of this data and the encouragement of its analysis could potentially lead to novel insights and innovative strategies in addressing housing affordability issues.
