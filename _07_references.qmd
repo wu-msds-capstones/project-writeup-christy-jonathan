@@ -31,33 +31,6 @@ Permutation Importance vs Random Forest Feature Importance (MDI). (n.d.). Scikit
 Brownlee, J. (2017, March 23). How to Make Out-of-Sample Forecasts with ARIMA in Python. Machine Learning Mastery. https://machinelearningmastery.com/make-sample-forecasts-arima-python/
 
 
-
-
-
-
-
-
-
-Oregon’s Homeownership Rate. (n.d.). https://ipropertymanagement.com/research/homeownership-rate-by-state?u=%2Fresearch%2Fhomeownership-rate-by-state#oregon.
-
-City of Portland. (2017). Inclusionary Housing. Retrieved from City of Portland website
-
-City of Portland. (2021). Portland Housing Bond. Retrieved from City of Portland website
-
-Glaeser, E. L., & Gyourko, J. (2018). The Economic Implications of Housing Supply. Journal of Economic Perspectives, 32(1), 3-30.
-
-National Association of Home Builders. (2021). The Economic Impact of Home Building in Oregon. Retrieved from NAHB website
-
-Oregon Legislature. (2019). House Bill 2001. Retrieved from Oregon Legislature website
-
-Phillips, J., & Goodstein, E. (2000). Growth Management and Housing Prices: The Case of Portland, Oregon. Contemporary Economic Policy, 18(3), 334-344.
-
-Pendall, R. (2020). From Zoning to Smart Growth. In E. S. Belsky, & N. P. Retsinas (Eds.), Revisiting Rental Housing: Policies, Programs, and Priorities. Brookings Institution Press.
-
-Smith, R. E. (2021). Off-Site and Modular Construction Explained. London: Taylor & Francis.
-
-U.S. Census Bureau. (2021). QuickFacts: Oregon. Retrieved from U.S. Census Bureau website
-
 Zillow. (2021). Portland Home Prices & Values. Retrieved from Zillow website
 
 U.S. Census Bureau. HOUSING UNITS. American Community Survey, ACS 5-Year Estimates Detailed Tables, Table B25001. Retrieved July 28, 2024, from https://data.census.gov/table/ACSDT5Y2019.B25001?q=number of housing units in oregon counties.
@@ -68,4 +41,11 @@ U.S. Census Bureau. "MORTGAGE STATUS BY MEDIAN REAL ESTATE TAXES PAID (DOLLARS).
 
 U.S. Census Bureau. "INCOME IN THE PAST 12 MONTHS (IN 2011 INFLATION-ADJUSTED DOLLARS) ." American Community Survey, ACS 5-Year Estimates Subject Tables, Table S1901, https://data.census.gov/table/ACSST1Y2011.S1901?q=median household income in oregon counties. Accessed on July 28, 2024.
 
-Regis, F. (2022). xboard.dev - Interrupted Time Series (ITS) in Python. Xboard.dev. https://www.xboard.dev/posts/2020_01_01_interrupted-time-series-python-part-I/index.html
+
+Bernal, J. L., Cummins, S., & Gasparrini, A. (2017). Interrupted time series regression for the evaluation of public health interventions: A tutorial. International Journal of Epidemiology, 46(1), 348-355.
+
+Penfold, R. B., & Zhang, F. (2013). Use of interrupted time series analysis in evaluating health care quality improvements. Academic Pediatrics, 13(6), S38-S44.
+
+Shadish, W. R., Cook, T. D., & Campbell, D. T. (2002). Experimental and quasi-experimental designs for generalized causal inference. Houghton Mifflin.
+
+Wagner, A. K., Soumerai, S. B., Zhang, F., & Ross-Degnan, D. (2002). Segmented regression analysis of interrupted time series studies in medication use research. Journal of Clinical Pharmacy and Therapeutics, 27(4), 299-309.

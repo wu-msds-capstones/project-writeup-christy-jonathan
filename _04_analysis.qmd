@@ -1,13 +1,8 @@
 # Analysis
 
 #### Rental vs Home Ownership - An Early Project Decision Point
-The aim of this project was to primarily look into unaffordable housing.  Housing consists, primarily, of 2 kinds
-of housed individuals:  those who rent and those who own a home.  To decide if we should be focused on both rental unit prices and current home sales, we looked at the
-current affordability strategies and compared them with our data to determine the most immediate need.
-According to the St. Louis Federal Reserve, about 64.1% of the housed population own their home (Homeownership Rate for Oregon, 2024), which leaves the rest, about 35.9%, as renters.
-We evaluated, `median_rent_2bdrm` vs `monthly_affordable_housing_payment` county-by-county
-to assess whether Oregonians are paying an unaffordable amount of rent each month.  You can see in the graph below that rental prices sit comfortably under the maximum affordable threshold.  Becuase of this, we decided to focus
-on home sale prices for the rest of our analysis.
+This study primarily investigated unaffordable housing in Oregon, considering both rental and homeownership sectors. To determine the focus between rental unit prices and current home sales, we analyzed current affordability strategies in conjunction with our data to identify the most pressing need. According to the St. Louis Federal Reserve, approximately 64.1% of Oregon's housed population are homeowners, with the remaining 35.9% being renters (Federal Reserve Bank of St. Louis, 2024). Our county-by-county evaluation of median_rent_2bdrm against monthly_affordable_housing_payment revealed that rental prices generally remain below the maximum affordable threshold. Consequently, we opted to concentrate our subsequent analysis on home sale prices. For context, we've included comparative data illustrating the recent decline in housing payment affordability for homeowners.  You can see in the graph below (@fig-rent-affordability) that rental prices sit comfortably under the maximum affordable threshold.  
+Becuase of this, we decided to focus on home sale prices for the rest of our analysis.  For reference and comparison, we have also included (@fig-mortgage-affordability) which shows how housing payment affordability has dwindled in recent years, while rent has stayed relatively stable.
 <br><br>
 
 ```{python}
@@ -331,28 +326,60 @@ Our comprehensive study employed multiple statistical methodologies to establish
 
 In our analytical approach, we focused on identifying policy interventions that aligned with the key predictors of housing affordability as determined by our statistical models. Specifically, we examined the intersection of features deemed significant by both our multiple linear regression and random forest models. This convergence of results across different statistical methodologies provided a robust foundation for selecting relevant policy interventions for further analysis. Our investigation revealed that housing unit production emerged as a significant factor in both modeling approaches, underscoring its potential impact on housing affordability. Concurrently, we sought to identify strategic initiatives implemented in Oregon that had well-defined implementation dates falling within our dataset's temporal scope. This criterion was crucial for enabling precise before-and-after comparisons in our subsequent analysis. Upon review of Oregon's housing policies, we identified the state's emphasis on increasing housing unit production as a key strategy to address affordability issues. This policy focus aligns closely with our empirical findings, making it an ideal candidate for evaluating the effectiveness of state-level interventions in the housing market. As mentioned in the Background section of our study, Oregon House Bill 2001, signed into law in July 2019, meets our established criteria for policy selection. This legislation specifically targets housing unit production, aligning with our statistical findings on significant predictors of housing affordability. The confluence of our identified strategies, linear regression model coefficients, and random forest permutation importances is visually represented in @fig-venn, providing a clear illustration of the intersection between our empirical results and the selected policy intervention. By focusing on this particular legislative action, we aim to leverage our statistical insights to assess the tangible impacts of a targeted housing production strategy on overall affordability metrics in Oregon.
 
-![Intersection of Feature Importances, Significant Coefficients, and Strategies](images/venn.drawio.png){#fig-venn, width=300}
+![Intersection of Feature Importances, Significant Coefficients, and Strategies](images/venn.drawio.png){#fig-venn width=300}
 
-### Time Series Foreast as a kind of A/B Test When and A/B Test is Not an Option
+### Interrupted Time Series as a kind of A/B Test When an A/B Test is Not an Option
 
-To make out-of-sample time series forecast model, we need to build a dataframe that incorporates the date and the feature of interest.  We then need to enrich our data with a column that will denote the data before and after the strategic intervention takes place.  In order to model just after portion, we use another column that denotes just the dates indicating after the intervention.  Running the ARIMA function of the statsmodels.tsa.arima.model library, we get output of coefficients
-(Regis, 2022)
+Interrupted Time Series (ITS) analysis is a quasi-experimental method employed to evaluate the impact of an intervention on a specific outcome variable within a single population over time (Wagner et al., 2002). This approach involves systematically tracking data points before and after a clearly defined intervention, with the "interruption" representing the intervention's implementation. The effects are assessed by examining changes in the level and slope of the time series, as well as the statistical significance of intervention parameters (Bernal et al., 2017). The robustness of an ITS model generally improves with an increased number of observations both pre- and post-intervention (Penfold & Zhang, 2013). While ITS design effectively controls for pre-existing trends, mitigating concerns related to between-group differences, it remains susceptible to time-varying confounders, such as concurrent interventions or events that may influence the outcome of interest (Shadish et al., 2002).
 
-### dataframe of enriched data
+
+### Building the Dataframe for the Interrupted Time Series Model
+
+To use ITS to evaluate whether Oregon's House Bill 2001, we first needed to create a dataframe consisting of the sum of housing units across Oregon at each month in our housing dataset.
+Then, we need to enrich our data with the following:
+ 
+* Y is the outcome feature
+
+* T is a continuous variable which indicates the time passed from start of the observational period
+
+* D is a dummy variable indicating observation collected before (D = 0) or after (D = 1) the intervention
+
+* P is a continuous variable indicating time passed since the intervention has occurred (before intervention has occurred P = 0)
+
+The table below (@fig-its-dataframe) is the resulting dataframe after transformation and enrichment.
 
 ```{python}
-#| label: dataframe 
-#| fig-cap: "test table" 
+#| label: fig-its-dataframe 
+#| fig-cap: "ITS Dataframe for Number of Housing Units" 
 import pandas as pd
 
-file_path = 'housing_engineered.csv'
+file_path = 'arima.csv'
 housing_data_engineered = pd.read_csv(file_path)
 
-housing_data_engineered['num_housing_units']
-
+housing_data_engineered
 ```
 
-![timeseries.png](images/timeseries.png){#fig-timeseries}
+Using the ARIMA function in the statsmodels.tsa.arima.model library, we obtained the following results:
+
+```{python}
+#| label: fig-arima-fit
+#| fig-cap: "SARIMAX Model Fit on ITS Dataset" 
+
+from statsmodels.tsa.arima.model import ARIMA
+import pandas as pd
+
+file_path = 'arima.csv'
+df = pd.read_csv(file_path)
+arima_results = ARIMA(df["Y"], df[["T","D","P"]], order=(1,0,0)).fit()
+print(arima_results.summary())
+```
+
+The analysis of the ARIMA model fit, as illustrated in @fig-arima-fit, reveals a modest yet statistically significant decline in housing units (D = -4833.06, p < 0.001). Concurrently, a slight, statistically non-significant increase is observed on a month-over-month basis (P). These findings are visually represented in @fig-timeseries and @fig-timeseries-zoom, which depict the time series data and a zoomed-in view, respectively. The counterfactual trajectory, represented by the upper line, illustrates the potential outcome in the absence of the observed effect, while the lower blue line denotes the actual observed data.
 
 
-![timeseries-zoomed.png](images/timeseries-zoomed.png){#fig-timeseries-zoom}
+![SARIMAX Counterfactual Forecast vs Model Predictions](images/timeseries.png){#fig-timeseries}
+
+
+![Zoomed in SARIMAX Plot](images/timeseries-zoomed.png){#fig-timeseries-zoom}
+
+Despite the absence of an observable increase in housing production within our time series analysis, it is crucial to acknowledge the COVID-19 pandemic as a significant confounding variable that emerged shortly after the implementation of the strategy in question. The possibility exists that, in the absence of HB 2001, the housing situation may have deteriorated further. This potential mitigating effect warrants consideration when interpreting the results.
