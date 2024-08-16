@@ -207,8 +207,7 @@ fig.update_layout(hoverlabel_namelength=-1)
 # Show the plot
 fig.show()
 ```
-
-<br><br>
+<br>
 
 ## Exploratory Data Analysis
 
@@ -278,7 +277,7 @@ From this approach, we obtained the following ranges of values:
 * **R^2^-adjusted**: 62.3% - 98.6%, with a median of 93.3%
 * **Mean Absolute Percentage Error**: 2.7% - 26%, with a median of 6.4%
 
-For a list of all results, see the table in the [Appendix](capstone.html#database-significant-coefficients)
+For a list of all results, see the table in the [Appendix](capstone.html#linear-regression-significant-coefficients)
 
 The results of our multiple linear regression analysis are most effectively conveyed through visual representation. @fig-lr-heatmap presents a comprehensive heatmap that provides a global perspective on both the magnitude and directionality of significant coefficients derived from our fitted models across all analyzed counties. This visualization enables a holistic interpretation of the regression outcomes, revealing patterns of variable importance across our study area. Notably, the variable 'num_housing_units' emerges as the most prominent predictor, exhibiting both substantial coefficient magnitudes and high frequency of significance across counties. This observation is further corroborated by the complementary visualizations in @fig-lr-coef and @fig-lr-county-count, which depict the distribution of coefficient strengths and the count of counties where each variable achieved statistical significance, respectively. The convergence of evidence from these multiple visual representations underscores the robustness of our findings regarding the pivotal role of housing unit quantity in explaining variations in median sale prices.
 
@@ -307,7 +306,7 @@ From this approach, we obtained the following value ranges:
 * **R^2^-score**: 68.5% - 98.3%, with a median of 91.2%
 * **Mean Absolute Percentage Error**: 2.2% - 12.8%, with a median of 4.9%
 
-For a list of all results, see the table in the [Appendix]
+For a list of all results, see the table in the [Appendix](capstone.html#random-forest-feature-importances)
 
 The Random Forest Regression analysis yielded results that were largely consistent across the range of statistical tests performed. Notably, the models exhibited a smaller overall median for mean absolute percentage error compared to the previously conducted linear regression analysis, suggesting an enhanced predictive capability of this non-linear approach in capturing the complexities of housing market dynamics. The relative importance of predictor variables, as visualized in the heatmap presented in @fig-rf-heatmap, revealed three primary factors of significance: median income, number of housing units, and population. These variables consistently demonstrated the highest importance across the analyzed counties, reinforcing their role as key determinants of median sale prices. 
 
@@ -358,22 +357,24 @@ housing_data_engineered = pd.read_csv(file_path)
 
 housing_data_engineered
 ```
-
+<br><br>
 Using the ARIMA function in the statsmodels.tsa.arima.model library, we obtained the following results:
 
 ```{python}
 #| label: fig-arima-fit
 #| fig-cap: "SARIMAX Model Fit on ITS Dataset" 
-
-from statsmodels.tsa.arima.model import ARIMA
 import pandas as pd
+from statsmodels.tsa.arima.model import ARIMA
+
 
 file_path = 'arima.csv'
 df = pd.read_csv(file_path)
 arima_results = ARIMA(df["Y"], df[["T","D","P"]], order=(1,0,0)).fit()
 print(arima_results.summary())
+print("")
 ```
 
+<br><br>
 The analysis of the ARIMA model fit, as illustrated in @fig-arima-fit, reveals a modest yet statistically significant decline in housing units (D = -4833.06, p < 0.001). Concurrently, a slight, statistically non-significant increase is observed on a month-over-month basis (P). These findings are visually represented in @fig-timeseries and @fig-timeseries-zoom, which depict the time series data and a zoomed-in view, respectively. The counterfactual trajectory, represented by the upper line, illustrates the potential outcome in the absence of the observed effect, while the lower blue line denotes the actual observed data.
 
 
