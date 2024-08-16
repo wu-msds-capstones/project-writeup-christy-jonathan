@@ -1,1 +1,19 @@
 # Background
+
+Oregon's approach to land use planning, which has significantly influenced its current housing landscape, can be traced back to the landmark Senate Bill 100, passed in 1973. This bill established a statewide land use planning program and created the Land Conservation and Development Commission (LCDC) to oversee it (Oregon Department of Land Conservation and Development, n.d.).
+The primary goals of Senate Bill 100 were to preserve Oregon's natural resources, particularly farmland and forests, and to promote orderly urban development. One of the most significant outcomes was the requirement for cities to establish urban growth boundaries (UGBs) to contain sprawl and promote density (Metro, 2018).
+
+Initially, the land use planning system was successful in preserving open spaces and farmland. However, as Oregon's population grew, particularly in the 1990s and 2000s, the constraints on land supply began to impact housing affordability.
+While UGBs were effective in preventing sprawl, they also limited the land available for new housing development. This scarcity of developable land, combined with increasing demand, contributed to rising land and housing costs (Harvel, 2023).
+
+By the early 2000s, housing affordability had become a significant issue in Oregon, particularly in the Portland metropolitan area. A 2001 study found that Portland had become one of the least affordable housing markets in the nation, despite having been one of the most affordable just a decade earlier (Phillips & Goodstein, 2000).
+The situation worsened in the following years. From 2000 to 2015, Portland experienced rapid population growth, while the supply of new housing lagged behind demand. This imbalance contributed to a sharp increase in housing prices and rents, making the city one of the least affordable in the nation. By 2015, the rising cost of housing had become a major issue, with many residents struggling to afford homes in the area. (A Look Back at Oregon’s Housing Crisis, n.d.)
+
+Recognizing the growing crisis, Oregon policymakers have implemented various measures to address housing affordability:
+
+1.  In 2007, the Oregon Legislature passed House Bill 3337, which required metro areas to maintain a 20-year land supply within UGBs, aiming to ease land supply constraints (Oregon Legislative Assembly, 2007).
+2.  In 2016, the state legislature passed Senate Bill 1533, allowing local governments to implement inclusionary zoning policies (Oregon Legislative Assembly, 2016).
+3.  In 2019, House Bill 2001 was passed, requiring cities to allow middle housing types in areas zoned for single-family dwellings (Oregon Legislative Assembly, 2019).
+
+Despite these efforts, Oregon continues to face significant housing affordability challenges. The state's unique land use system, while successful in preserving open spaces, has contributed to a complex housing market dynamic that continues to challenge policymakers and residents alike.
+As of 2024, Oregon's housing crisis remains a pressing issue, with ongoing debates about how to balance the state's pioneering land use laws with the urgent need for affordable housing (A Housing Shortage Is Testing Oregon’s Pioneering Land Use Law. Lawmakers Are Set to Tweak It, 2024).  In this paper, we will use aggregated housing and economic data for each Oregon county to attempt to assess a measure of effectiveness between a strategic intervention taken by the state and a feature of our data found to be important in our analysis.  Our goal is to outline a path to future assessments of the strategies Oregon takes to combat its housing crisis. 

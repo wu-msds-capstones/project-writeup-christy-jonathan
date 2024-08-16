@@ -1,0 +1,60 @@
+# Appendix
+
+### Software versions used
+
+1.  python v3.12.4
+2.  sklearn v1.5.1
+3.  SciPy v1.14.0
+4.  statsmodels v0.14.1
+5.  seaborn v0.13.2, matplotlib v3.9.0, and plotly v5.23.0 for visualizations
+6.  pandas v2.2.2 and numpy v2.0 for data manipulation
+7.  pymannkendall v1.4.3
+8.  OpenAI ChatGPT4 and Anthropic Claude3.5 Sonet
+
+### CSV files used to create the database
+1.  Oregon Population Estimates per County
+2.  Monthly Average National Mortgage Rates for a 30-Year Mortgage
+3.  Census Estimates for Yearly Income
+4.  Census Estimates for Yearly Number of Housing Units
+5.  Census Estimates for Yearly Rental Vacancy Rates
+6.  Census Estimates for Yearly Real Estate Taxes
+7.  Median Rental Prices for a 2-Bedroom Unit
+8.  Redfin Housing Data
+
+### Database features removed from analysis:
+
+* `property_tax`<br>
+While working on correlations in the data, we noticed how strongly property_tax was correlated to median house sale price.
+In digging into why, we realized that property tax is directly calculated on the property value, which is assessed yearly and when a house is sold.
+It is, therefore, also correlated to several other predictor variables in the dataset.  We decided to remove this variable from the analysis because it did not provide insight or value to attempting to get at features that might more directly affect median sale price.
+<br><br>
+![Property Tax Feature Set Correlations](images/property_tax_correlation.png)
+* `rental_vacancy` <br>
+This feature was removed after the analysis of rental price trends in the [Analysis] section.
+* `median_rent_2_bdrm` <br>
+This feature was removed after the analysis of rental price trends in the [Analysis] section.
+
+
+### Linear Regression Significant Coefficients
+```{python}
+#| label: fig-lr-results-dataframe 
+#| fig-cap: "Linear Regression Results Dataframe" 
+import pandas as pd
+
+file_path = 'lr_results.csv'
+housing_data_engineered = pd.read_csv(file_path)
+
+housing_data_engineered
+```
+
+### Random Forest Feature Importances
+```{python}
+#| label: fig-rf-results-dataframe 
+#| fig-cap: "Random Forest Results Dataframe" 
+import pandas as pd
+
+file_path = 'rf_results.csv'
+housing_data_engineered = pd.read_csv(file_path)
+
+housing_data_engineered
+```

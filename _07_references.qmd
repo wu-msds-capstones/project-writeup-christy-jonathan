@@ -1,0 +1,51 @@
+# Reference
+
+Wikipedia Contributors. (2019, June 19). Right to housing. Wikipedia; Wikimedia Foundation. https://en.wikipedia.org/wiki/Right_to_housing
+
+Hitting Home: Housing Affordability in the U.S. | Econofact. (2024, March 14). Econofact.org. https://econofact.org/hitting-home-housing-affordability-in-the-u-s
+
+Ramakrishnan, J. (2022, June 21). Estimated 168,000 households priced out of Portland area real estate market in just 6 months. Oregonlive. https://www.oregonlive.com/business/2022/06/estimated-168000-households-priced-out-of-portland-area-housing-market-in-just-6-months.html
+
+Harvel, J. (2023, June 7). Fifty Years of Unique Land Use. The Source Weekly - Bend; The Source Weekly - Bend. https://www.bendsource.com/news/fifty-years-of-unique-land-use-19291486
+
+Metro. (2018, June 22). Urban growth boundary. Metro. https://www.oregonmetro.gov/urban-growth-boundary
+
+Phillips, J., & Goodstein, E. (2000). Growth management and housing prices: The case of Portland, Oregon. Contemporary Economic Policy, 18(3), 334-344.
+
+A Look Back At Oregon’s Housing Crisis. (n.d.). Opb. https://www.opb.org/news/series/greetings-northwest/a-look-back-at-oregons-housing-crisis/
+
+Oregon Legislative Assembly. (2007). House Bill 3337. 74th Oregon Legislative Assembly.
+
+Oregon Legislative Assembly. (2016). Senate Bill 1533. 78th Oregon Legislative Assembly.
+
+Oregon Legislative Assembly. (2019). House Bill 2001. 80th Oregon Legislative Assembly.
+
+A housing shortage is testing Oregon’s pioneering land use law. Lawmakers are set to tweak it. (2024, February 25). AP News. https://apnews.com/article/oregon-land-use-law-urban-growth-boundary-housing-d85c2413f169cd02cbf6b15fd9c95329
+
+Mortgage Payment Calculator - NerdWallet. (2023). NerdWallet. https://www.nerdwallet.com/mortgages/mortgage-payment-calculator
+
+Elliott, M. (2006). Regression Methods in Biostatistics: Linear, Logistic, Survival, and Repeated Measures Models Edited by Vittinghoff, E., Glidden, D. V., Shiboski, S. C., and Mcculloch, C. E. Biometrics, 62(4), 1271–1272. https://doi.org/10.1111/j.1541-0420.2006.00596_3.x
+
+Permutation Importance vs Random Forest Feature Importance (MDI). (n.d.). Scikit-Learn. https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html
+
+Brownlee, J. (2017, March 23). How to Make Out-of-Sample Forecasts with ARIMA in Python. Machine Learning Mastery. https://machinelearningmastery.com/make-sample-forecasts-arima-python/
+
+
+Zillow. (2021). Portland Home Prices & Values. Retrieved from Zillow website
+
+U.S. Census Bureau. HOUSING UNITS. American Community Survey, ACS 5-Year Estimates Detailed Tables, Table B25001. Retrieved July 28, 2024, from https://data.census.gov/table/ACSDT5Y2019.B25001?q=number of housing units in oregon counties.
+
+U.S. Census Bureau. "COMPARATIVE HOUSING CHARACTERISTICS." American Community Survey, ACS 5-Year Estimates Comparison Profiles, Table CP04, https://data.census.gov/table/ACSCP5Y2019.CP04?q=CP04 oregon counties. Accessed on July 28, 2024.
+
+U.S. Census Bureau. "MORTGAGE STATUS BY MEDIAN REAL ESTATE TAXES PAID (DOLLARS)." American Community Survey, ACS 5-Year Estimates Detailed Tables, Table B25103, https://data.census.gov/table/ACSDT1Y2019.B25103?q=B25103 oregon counties. Accessed on July 28, 2024.
+
+U.S. Census Bureau. "INCOME IN THE PAST 12 MONTHS (IN 2011 INFLATION-ADJUSTED DOLLARS) ." American Community Survey, ACS 5-Year Estimates Subject Tables, Table S1901, https://data.census.gov/table/ACSST1Y2011.S1901?q=median household income in oregon counties. Accessed on July 28, 2024.
+
+
+Bernal, J. L., Cummins, S., & Gasparrini, A. (2017). Interrupted time series regression for the evaluation of public health interventions: A tutorial. International Journal of Epidemiology, 46(1), 348-355.
+
+Penfold, R. B., & Zhang, F. (2013). Use of interrupted time series analysis in evaluating health care quality improvements. Academic Pediatrics, 13(6), S38-S44.
+
+Shadish, W. R., Cook, T. D., & Campbell, D. T. (2002). Experimental and quasi-experimental designs for generalized causal inference. Houghton Mifflin.
+
+Wagner, A. K., Soumerai, S. B., Zhang, F., & Ross-Degnan, D. (2002). Segmented regression analysis of interrupted time series studies in medication use research. Journal of Clinical Pharmacy and Therapeutics, 27(4), 299-309.

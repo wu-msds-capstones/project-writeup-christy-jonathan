@@ -1,0 +1,381 @@
+# Analysis
+
+#### Rental vs Home Ownership - An Early Project Decision Point
+This study primarily investigated unaffordable housing in Oregon, considering both rental and homeownership sectors. To determine the focus between rental unit prices and current home sales, we analyzed current affordability strategies in conjunction with our data to identify the most pressing need. According to the St. Louis Federal Reserve, approximately 64.1% of Oregon's housed population are homeowners, with the remaining 35.9% being renters (Federal Reserve Bank of St. Louis, 2024). Our county-by-county evaluation of median_rent_2bdrm against monthly_affordable_housing_payment revealed that rental prices generally remain below the maximum affordable threshold. Consequently, we opted to concentrate our subsequent analysis on home sale prices. For context, we've included comparative data illustrating the recent decline in housing payment affordability for homeowners.  You can see in the graph below (@fig-rent-affordability) that rental prices sit comfortably under the maximum affordable threshold.  
+Because of this, we decided to focus on home sale prices for the rest of our analysis.  For reference and comparison, we have also included (@fig-mortgage-affordability) which shows how housing payment affordability has dwindled in recent years, while rent has stayed relatively stable.
+<br><br>
+
+```{python}
+#| label: fig-rent-affordability
+#| fig-cap: "Median rent for a 2 bedroom vs Maximum affordable housing price"
+
+
+import pandas as pd
+import plotly.graph_objs as go
+import plotly.express as px
+from plotly.subplots import make_subplots
+
+# Load the dataset
+file_path = 'housing_engineered.csv'
+housing_data_engineered = pd.read_csv(file_path)
+
+# Convert the date column to datetime format
+housing_data_engineered['date'] = pd.to_datetime(housing_data_engineered['date'])
+housing_data_engineered['county'] = housing_data_engineered['county'].apply(lambda x: x.capitalize())
+
+# Get unique list of counties
+counties = housing_data_engineered['county'].unique()
+
+# Create initial figure
+fig = make_subplots()
+
+# Add traces for the initial county (first county in the list)
+initial_county_data = housing_data_engineered[housing_data_engineered['county'] == counties[0]]
+fig.add_trace(go.Scatter(x=initial_county_data['date'], y=initial_county_data['median_rent_2bdrm'], mode='lines', name='Median Rent 2 Bedroom', line_color='#1f77b4'))
+fig.add_trace(go.Scatter(x=initial_county_data['date'], y=initial_county_data['monthly_affordable_housing_payment'], mode='lines', name='Monthly Affordable Housing Payment', line_color='#ff7f0e'))
+
+# Update plot sizing
+fig.update_layout(
+    template="plotly_white",
+)
+
+# Update layout with dropdown
+dropdown_buttons = [
+    {
+        'args': [{'y': [housing_data_engineered[housing_data_engineered['county'] == county]['median_rent_2bdrm'],
+                        housing_data_engineered[housing_data_engineered['county'] == county]['monthly_affordable_housing_payment']],
+                 'x': [housing_data_engineered[housing_data_engineered['county'] == county]['date'],
+                       housing_data_engineered[housing_data_engineered['county'] == county]['date']],
+                 'type': 'scatter'}],
+        'label': county,
+        ''
+        'method': 'update'
+    }
+    for county in counties
+]
+
+layout = dict(
+   buttons = dropdown_buttons,
+   direction =  'down',
+   showactive = True,
+   pad={"r": 10},
+   yanchor="top",
+   y=0.95,
+   xanchor="left",
+   x=1.05
+)
+
+fig.update_layout(margin=dict(t=100, b=50)) 
+
+fig.update_layout(legend=dict(
+    yanchor="top",
+    y=1.1,
+    xanchor="left",
+    x=0,
+
+))
+
+fig.update_layout(
+    updatemenus=[
+        layout
+    ]
+)
+
+# Add annotation for the dropdown
+fig.add_annotation(
+    text="County",
+    x=1.15,  # X position of the annotation
+    y=1.0,   # Y position of the annotation (adjusted to be slightly above the dropdown)
+    xref="paper",  # Reference to the paper coordinate system
+    yref="paper",
+    showarrow=False,  # No arrow
+    font=dict(size=12)  # Font size
+)
+
+# Update axis labels and title
+fig.update_layout(
+    title='Oregon County Rentals have Managed to Stay Affordable</i>',
+    xaxis_title='Date',
+    yaxis_title='Monthly Rental Payment (Inflation Adjusted U.S. Dollars)',
+)
+fig.update_layout(yaxis_tickprefix = '$')
+fig.update_traces(mode="lines", hovertemplate=None)
+fig.update_layout(hovermode="x")
+fig.update_layout(hoverlabel_namelength=-1)
+
+# Show the plot
+fig.show()
+```
+
+
+```{python}
+#| label: fig-mortgage-affordability
+#| fig-cap: "<br>Median Mortgage Principal and Interest Payments vs Maximum Affordable Housing Price"
+
+import pandas as pd
+import plotly.graph_objs as go
+from plotly.subplots import make_subplots
+
+# Load the dataset
+file_path = 'housing_engineered.csv'
+housing_data_engineered = pd.read_csv(file_path)
+
+# Convert the date column to datetime format
+housing_data_engineered['date'] = pd.to_datetime(housing_data_engineered['date'])
+housing_data_engineered['county'] = housing_data_engineered['county'].apply(lambda x: x.capitalize())
+
+# Get unique list of counties
+counties = housing_data_engineered['county'].unique()
+
+# Create initial figure
+fig = make_subplots()
+
+# Add traces for the initial county (first county in the list)
+initial_county_data = housing_data_engineered[housing_data_engineered['county'] == counties[0]]
+fig.add_trace(go.Scatter(x=initial_county_data['date'], y=initial_county_data['monthly_housing_payment'], mode='lines', name='Monthly Median Mortgage P&I Payment', line_color='#1f77b4'))
+fig.add_trace(go.Scatter(x=initial_county_data['date'], y=initial_county_data['monthly_affordable_housing_payment'], mode='lines', name='Monthly Affordable Housing Payment', line_color='#ff7f0e'))
+
+# Update plot sizing
+fig.update_layout(
+    template="plotly_white",
+)
+
+# Update layout with dropdown
+dropdown_buttons = [
+    {
+        'args': [{'y': [housing_data_engineered[housing_data_engineered['county'] == county]['monthly_housing_payment'],
+                        housing_data_engineered[housing_data_engineered['county'] == county]['monthly_affordable_housing_payment']],
+                 'x': [housing_data_engineered[housing_data_engineered['county'] == county]['date'],
+                       housing_data_engineered[housing_data_engineered['county'] == county]['date']],
+                 'type': 'scatter'}],
+        'label': county,
+        'method': 'update'
+    }
+    for county in counties
+]
+
+
+layout = dict(
+   buttons = dropdown_buttons,
+   direction =  'down',
+   showactive = True,
+   pad={"r": 10},
+   yanchor="top",
+   y=0.95,
+   xanchor="left",
+   x=1.05
+)
+
+fig.update_layout(margin=dict(t=100, b=50)) 
+
+fig.update_layout(legend=dict(
+    yanchor="top",
+    y=1.05,
+    xanchor="left",
+    x=-.07,
+
+))
+
+fig.update_layout(
+    updatemenus=[
+        layout
+    ]
+)
+
+# Add annotation for the dropdown
+fig.add_annotation(
+    text="County",
+    x=1.15,  # X position of the annotation
+    y=1.0,   # Y position of the annotation (adjusted to be slightly above the dropdown)
+    xref="paper",  # Reference to the paper coordinate system
+    yref="paper",
+    showarrow=False,  # No arrow
+    font=dict(size=12)  # Font size
+)
+
+# Update axis labels and title
+fig.update_layout(
+    title='Oregon Housing Is Unaffordable<br><sup>Oregon 30-Year Mortgage Principal and Interest Payments Are Outpacing Affordability</sup>',
+    xaxis_title='Date',
+    yaxis_title='Monthly Mortgage Payment<br>Monthly Affordable Housing Payment <br> (Inflation Adjusted U.S. Dollars)',
+)
+fig.update_layout(yaxis_tickprefix = '$')
+fig.update_traces(mode="lines", hovertemplate=None)
+fig.update_layout(hovermode="x")
+fig.update_layout(hoverlabel_namelength=-1)
+
+# Show the plot
+fig.show()
+```
+<br>
+
+## Exploratory Data Analysis
+
+Our preliminary analysis commenced with the generation of bivariate scatter plots, juxtaposing various features of interest against the median house sale price. This exploratory data visualization revealed significant heterogeneity in both the magnitude and directionality of correlations across different variables. Upon observing divergent correlation patterns, we conducted a targeted investigation into the housing markets of counties exhibiting anomalous relationships. This inquiry revealed that in sparsely populated counties, property valuations were predominantly driven by land value rather than the structural attributes of the housing units themselves. Given these observations, it became imperative to assess whether our analysis should focus on a subset of counties. To address this question, we employed a multi-faceted approach utilizing a series of scatter plots to visualize and quantify the relationships between various housing market indicators across different counties, generated heatmaps to provide a comprehensive overview of correlation strengths and patterns across multiple variables simultaneously, and incorporated geographical considerations to account for regional variations in housing market dynamics. Through this rigorous analytical process, we were able to refine our dataset and analytical approach, ensuring that our subsequent analyses would be based on a more homogeneous and representative sample of the housing market dynamics in the region of interest.
+
+### Correlation Analysis 
+
+Given the apparent association between correlation patterns and county population, we implemented a methodological approach to quantify this relationship. We first percentile-ranked the counties based on population and subsequently generated bivariate plots of selected housing indicators where we had previously observed diminishing correlations. @fig-scatter illustrates this phenomenon, demonstrating the varying correlation between the number of housing units and median home sale price as a function of county population. To obtain a more comprehensive understanding of this relationship and to assess its generalizability across other variables, we constructed a heatmap of Pearson correlation coefficients between all independent features and the median sale price, as depicted in @fig-all-correlation. This visualization technique allowed us to globally examine the consistency of population-dependent correlations across multiple housing market indicators, providing a nuanced view of the complex interplay between county demographics and housing market dynamics. The results of this analysis underscore the importance of considering population as a key factor in modeling housing market trends and suggest that stratified or weighted analytical approaches may be necessary to accurately capture market behaviors across diverse county profiles.
+
+::: {#fig-scatter layout-ncol=5}
+![Sherman County 3^rd^](images/scatter_sherman.png){#fig-scatter_sherman}
+
+![Baker County 25^th^](images/scatter_baker.png){#fig-scatter_baker}
+
+![Clatsop County 50^th^](images/scatter_clatsop.png){#fig-scatter_clatsop}
+
+![Yamhill County 75^th^](images/scatter_yamhill.png){#fig-scatter_yamhill}
+
+![Multnomah County 100^th^](images/scatter_multnomah.png){#fig-scatter_multnomah}
+
+Scatter Plots over Stratified by Population Percentile
+:::
+
+![Correlation Matrix of All Features vs Median Sale Price for All 36 Counties, Ordered by Population (left to right, most to least populated)](images/median_sale_price_correlation.png){#fig-all-correlation}
+
+#### Narrowing the County List
+
+To optimize our analysis of housing affordability through the lens of our predefined dataset features, we implemented a strategic data reduction approach. We elected to exclude approximately 60% of counties from our analysis, retaining only those at or above the 40th percentile in population. This methodological decision was predicated on our finding that the retained subset still encompassed 96% of the housing market, while effectively eliminating numerous counties that demonstrated poor model fit with our chosen features. @fig-all-correlation-subset-counties illustrates the resulting correlation heatmap, revealing a more cohesive band of correlated features. The selection of the 40th percentile threshold was determined through an iterative process, aimed at maximizing the exclusion of poorly-fitting counties while maintaining a substantial and representative proportion of the housing market. This approach was designed to be both comprehensible and replicable, utilizing a clear percentile cutoff. Our analysis indicated that the 60th percentile provided an optimal balance between noise reduction and housing market representation. However, we acknowledge the potential validity of extending this threshold to the 70th percentile, which would incorporate an additional 2% of the housing market.
+
+![Correlations for 60% of Counties, Ordered by Population (left to right, most to least populated)](images/median_sale_price_correlation_subset.png){#fig-all-correlation-subset-counties}
+
+
+### Trend Analysis
+
+Utilizing our refined county subset, we identified the variables exhibiting the strongest correlations with median sale price through heatmap analysis. The most salient variables were inventory, days on market, average sale to list ratio, median income, population, and number of housing units. We subsequently conducted a longitudinal analysis of these key variables over the dataset's timespan, as illustrated in @fig-trends. Recognizing the limitations of visual trend interpretation from time series plots, we employed the Mann-Kendall test to detect statistically significant trends. Our analysis revealed significant decreasing trends in two demand indicators: inventory and days on market. Given their negative correlation with median sale price, these decreasing trends suggest a positive association with rising median home sale prices. Notably, the remaining highly correlated features did not exhibit statistically significant trends. Of particular interest, the Mann-Kendall test did not indicate a significant trend in average median income over time. Collectively, these findings paint a picture of increasing housing demand without commensurate trends in housing supply (as measured by the number of housing units) or purchasing power (as indicated by median income). This asymmetry between demand growth and stagnant supply and income trends provides valuable insight into the dynamics potentially driving housing affordability challenges in the studied markets.
+
+::: {#fig-trends layout-nrow=2}
+![Average Days On Market - Decreasing Trend](images/trend_days_on_market.png){#fig-trend_days}
+
+![Average Number of Housing Units - No Overall Trend](images/trend_housing_units.png){#fig-trend_units}
+
+![Average Median Income - No Overall Trend](images/trend_income.png){#fig-trend_income}
+
+![Average Change in Inventory - Decreasing Trend](images/trend_inventory.png){#fig-trend_inventory}
+
+![Average Change in Population - No Overall Trend](images/trend_population.png){#fig-trend_population}
+
+![Average Ratio of List to Sale Price - No Overall Trend](images/trend_avg_sale_to_list.png){#fig-trend_ratio}
+
+Significant Trend Analysis in Oregon Housing Market
+:::
+
+## Linear Regression
+
+### Linear Assumptions
+
+To corroborate our correlation analysis findings, we conducted a multiple linear regression analysis on our subset of 22 counties. Recognizing the presence of autocorrelation in our time series data and our objective to study the effects of features on median sale price independent of temporal factors, we implemented a data transformation approach. This involved removing the time component and randomizing the row order to mitigate autocorrelation effects. Additionally, we addressed the issue of multicollinearity among our predictor variables by employing Variance Inflation Factors (VIFs) as our metric of assessment. We developed a custom function utilizing the variance_inflation_factor from the statsmodels.stats.outliers_influence library to calculate and rank the VIFs for our set of housing variables. Following established literature (Elliott, 2006), we adopted a VIF threshold of 10. Our iterative process involved sequentially removing features with the highest VIF exceeding this threshold and recalculating VIFs for the remaining variables until all VIFs fell below 10. This methodological approach enabled us to derive a refined set of predictor variables suitable for multiple linear regression analysis for each county. @fig-multi provides a visual representation of this iterative VIF reduction process. This rigorous variable selection procedure ensures the statistical validity of our regression model by minimizing multicollinearity, thereby enhancing the reliability and interpretability of our findings regarding the determinants of median sale prices in the housing market.
+
+![Removing Multicollinearity from Housing Column Set For a County](images/lr_drawio.png){#fig-multi}
+
+
+### Searching for Significant Coefficients
+
+Our application of multiple linear regression was primarily aimed at inferential analysis rather than predictive modeling. The objective was to establish empirical evidence for significant correlations between our dataset features and median sale price. We implemented this analysis across all 22 counties in our refined subset, employing an iterative ordinary least-squares modeling approach. For each county, we first addressed multicollinearity and temporal autocorrelation as previously described and illustrated in @fig-multi. Subsequently, we iteratively refined our models, retaining only those variables with statistically significant coefficients. This process yielded a set of parsimonious models with exclusively significant predictors. We systematically collected data on coefficient magnitudes and directions, adjusted R² values, and an array of error metrics including mean absolute error, mean absolute percentage error, mean squared error, and root mean squared error. Our primary focus was on the mean absolute percentage error due to its interpretability in the context of our dependent variable. For instance, a mean absolute error of 5 in our model would translate to an error of $5,000 in median sale price prediction.
+From this approach, we obtained the following ranges of values:
+
+* **R^2^-adjusted**: 62.3% - 98.6%, with a median of 93.3%
+* **Mean Absolute Percentage Error**: 2.7% - 26%, with a median of 6.4%
+
+For a list of all results, see the table in the [Appendix](capstone.html#linear-regression-significant-coefficients)
+
+The results of our multiple linear regression analysis are most effectively conveyed through visual representation. @fig-lr-heatmap presents a comprehensive heatmap that provides a global perspective on both the magnitude and directionality of significant coefficients derived from our fitted models across all analyzed counties. This visualization enables a holistic interpretation of the regression outcomes, revealing patterns of variable importance across our study area. Notably, the variable 'num_housing_units' emerges as the most prominent predictor, exhibiting both substantial coefficient magnitudes and high frequency of significance across counties. This observation is further corroborated by the complementary visualizations in @fig-lr-coef and @fig-lr-county-count, which depict the distribution of coefficient strengths and the count of counties where each variable achieved statistical significance, respectively. The convergence of evidence from these multiple visual representations underscores the robustness of our findings regarding the pivotal role of housing unit quantity in explaining variations in median sale prices.
+
+![Significant Coefficients Found In Oregon Counties with Multiple Linear Regression](images/feature_significance_county.png){#fig-lr-heatmap}
+
+<br><br>
+
+::: {#fig-counts layout-ncol=2}
+
+![Significant Coefficient Counts and Directions of Correlation Found in Oregon Counties with Multiple Linear Regression](images/feature_set_by_county.png){#fig-lr-coef}
+
+![Significant Coefficient Absolute County Count For Multiple Linear Regression Models](images/lr_significant_features_count.png){#fig-lr-county-count}
+
+County Counts of Significant Coefficients Found in Multiple Linear Regression
+:::
+
+## Random Forest Regressor
+To capture both linear and non-linear correlations and further corroborate our findings regarding significant indicators of median sale price, we employed Random Forest Regression using the Sklearn library. This methodological approach was applied consistently across all 22 counties in our dataset. For each county, we utilized permutation importance to identify 
+statistically significant variables, subsequently refitting the model with only these selected features. Our choice of permutation importance over Random Forest Feature Importance was informed by the Sklearn library documentation, which notes that impurity-based importance can potentially overstate a feature's value in a dataset (Permutation Importance vs Random Forest Feature Importance (MDI), n.d.). 
+To facilitate a direct comparison with our linear regression results, we generated a heatmap (@fig-rf-heatmap) analogous to that produced for the linear regression analysis (@fig-lr-heatmap). This visual representation allows for a comprehensive comparison of the two modeling approaches, enabling us to identify consistencies and divergences in feature importance across linear and non-linear analytical frameworks. 
+By employing this dual modeling strategy, we aim to provide a more robust and nuanced understanding of the factors influencing median sale prices in our study area, accounting for potential complex, non-linear relationships that may not be captured by linear regression alone. The resulting heatmap reveals a notable consistency with the linear regression results in terms of the most significant features.
+This convergence of findings across different modeling techniques strengthens the validity of our identified key predictors of median sale prices. However, the Random Forest model demonstrates a higher frequency of significant correlations across counties for certain features, as you can see comparing the linear regression significant feature counts in @fig-lr-county-count and the random forest county counts (@fig-rf-county-count), suggesting its capacity to capture more nuanced or non-linear relationships within the data. 
+To ensure comparability with our Multiple Linear Regression analysis, we calculated identical error metrics for each Random Forest model, including mean absolute error, mean absolute percentage error, mean squared error, and root mean squared error. Additionally, we computed the R² score for each fitted model, providing a comprehensive set of performance indicators.
+From this approach, we obtained the following value ranges:
+
+* **R^2^-score**: 68.5% - 98.3%, with a median of 91.2%
+* **Mean Absolute Percentage Error**: 2.2% - 12.8%, with a median of 4.9%
+
+For a list of all results, see the table in the [Appendix](capstone.html#random-forest-feature-importances)
+
+The Random Forest Regression analysis yielded results that were largely consistent across the range of statistical tests performed. Notably, the models exhibited a smaller overall median for mean absolute percentage error compared to the previously conducted linear regression analysis, suggesting an enhanced predictive capability of this non-linear approach in capturing the complexities of housing market dynamics. The relative importance of predictor variables, as visualized in the heatmap presented in @fig-rf-heatmap, revealed three primary factors of significance: median income, number of housing units, and population. These variables consistently demonstrated the highest importance across the analyzed counties, reinforcing their role as key determinants of median sale prices. 
+
+![Significant Features Found in Oregon Counties with Random Forest Regressor](images/feature_importance_county.png){#fig-rf-heatmap}
+
+<br><br>
+
+![Significant Coefficient Absolute County Count for Random Forest Regressor Models](images/sig_feature_county_count.png){#fig-rf-county-count}
+
+
+## Determination of Policy Effectiveness with Time Series Forecasting
+
+Our comprehensive study employed multiple statistical methodologies to establish correlations between various features in our dataset and median sale prices across Oregon counties. The insights derived from this analysis provide a robust foundation for evaluating the efficacy of strategic housing policy interventions. By leveraging seasonal autoregressive time series forecasting techniques, we can develop a predictive model based on pre-intervention data and compare these projections against post-intervention observations. This approach enables a statistical comparison between the counterfactual scenario (what could have occurred in the absence of intervention) and the actual outcomes following policy implementation.
+
+### Strategy and Feature Selection
+
+In our analytical approach, we focused on identifying policy interventions that aligned with the key predictors of housing affordability as determined by our statistical models. Specifically, we examined the intersection of features deemed significant by both our multiple linear regression and random forest models. This convergence of results across different statistical methodologies provided a robust foundation for selecting relevant policy interventions for further analysis. Our investigation revealed that housing unit production emerged as a significant factor in both modeling approaches, underscoring its potential impact on housing affordability. Concurrently, we sought to identify strategic initiatives implemented in Oregon that had well-defined implementation dates falling within our dataset's temporal scope. This criterion was crucial for enabling precise before-and-after comparisons in our subsequent analysis. Upon review of Oregon's housing policies, we identified the state's emphasis on increasing housing unit production as a key strategy to address affordability issues. This policy focus aligns closely with our empirical findings, making it an ideal candidate for evaluating the effectiveness of state-level interventions in the housing market. As mentioned in the Background section of our study, Oregon House Bill 2001, signed into law in July 2019, meets our established criteria for policy selection. This legislation specifically targets housing unit production, aligning with our statistical findings on significant predictors of housing affordability. The confluence of our identified strategies, linear regression model coefficients, and random forest permutation importances is visually represented in @fig-venn, providing a clear illustration of the intersection between our empirical results and the selected policy intervention. By focusing on this particular legislative action, we aim to leverage our statistical insights to assess the tangible impacts of a targeted housing production strategy on overall affordability metrics in Oregon.
+
+![Intersection of Feature Importances, Significant Coefficients, and Strategies](images/venn.drawio.png){#fig-venn width=300}
+
+### Interrupted Time Series for A/B Testing Interventions
+
+Interrupted Time Series (ITS) analysis is a quasi-experimental method employed to evaluate the impact of an intervention on a specific outcome variable within a single population over time (Wagner et al., 2002). This approach involves systematically tracking data points before and after a clearly defined intervention, with the "interruption" representing the intervention's implementation. The effects are assessed by examining changes in the level and slope of the time series, as well as the statistical significance of intervention parameters (Bernal et al., 2017). The robustness of an ITS model generally improves with an increased number of observations both pre- and post-intervention (Penfold & Zhang, 2013). While ITS design effectively controls for pre-existing trends, mitigating concerns related to between-group differences, it remains susceptible to time-varying confounders, such as concurrent interventions or events that may influence the outcome of interest (Shadish et al., 2002).
+
+
+### Building the Dataframe for the Interrupted Time Series Model
+
+To use ITS to evaluate whether Oregon's House Bill 2001, we first needed to create a dataframe consisting of the sum of housing units across Oregon at each month in our housing dataset.
+Then, we need to enrich our data with the following:
+ 
+* Y is the outcome feature
+
+* T is a continuous variable which indicates the time passed from start of the observational period
+
+* D is a dummy variable indicating observation collected before (D = 0) or after (D = 1) the intervention
+
+* P is a continuous variable indicating time passed since the intervention has occurred (before intervention has occurred P = 0)
+
+The table below (@fig-its-dataframe) is the resulting dataframe after transformation and enrichment.
+
+```{python}
+#| label: fig-its-dataframe 
+#| fig-cap: "ITS Dataframe for Number of Housing Units" 
+import pandas as pd
+
+file_path = 'arima.csv'
+housing_data_engineered = pd.read_csv(file_path)
+
+housing_data_engineered
+```
+
+### SARIMAX ITS Model Results
+The analysis of the ARIMA model fit, as illustrated in @fig-arima-fit, reveals a modest yet statistically significant decline in housing units (D = -4833.06, p < 0.001). Concurrently, a slight, statistically non-significant increase is observed on a month-over-month basis (P). These findings are visually represented in @fig-timeseries and @fig-timeseries-zoom, which depict the time series data and a zoomed-in view, respectively. The counterfactual trajectory, represented by the upper line, illustrates the potential outcome in the absence of the observed effect, while the lower blue line denotes the actual observed data.
+
+```{python}
+#| label: fig-arima-fit
+#| fig-cap: "SARIMAX Model Fit on ITS Dataset" 
+import pandas as pd
+from statsmodels.tsa.arima.model import ARIMA
+
+file_path = 'arima.csv'
+df = pd.read_csv(file_path)
+arima_results = ARIMA(df["Y"], df[["T","D","P"]], order=(1,0,0)).fit()
+arima_results.summary()
+```
+
+![SARIMAX Counterfactual Forecast vs Model Predictions](images/timeseries.png){#fig-timeseries}
+
+
+![Zoomed in SARIMAX Plot](images/timeseries-zoomed.png){#fig-timeseries-zoom}
+
+Despite the absence of an observable increase in housing production within our time series analysis, it is crucial to acknowledge the COVID-19 pandemic as a significant confounding variable that emerged shortly after the implementation of the strategy in question. The possibility exists that, in the absence of HB 2001, the housing situation may have deteriorated further. This potential mitigating effect warrants consideration when interpreting the results.

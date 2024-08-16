@@ -1,1 +1,32 @@
 # Introduction
+
+The right to housing is recognized worldwide and included in human
+rights legal documents, including the
+Universal Declaration of Human Rights, which the US signed in 1948 (Wikipedia Contributors, 2019).
+However, in recent years, access to affordable housing has become a significant
+obstacle to homeownership and affordable rent across the United
+States (Hitting Home: Housing Affordability in the U.S. | Econofact, 2024).
+According to the National Low Income Housing Coalition, the lack of
+affordable housing costs the American economy approximately $2 trillion dollars
+annually in lost wages and productivity (NLIHC, 2022).
+
+
+Over the past 20 years, a variety of interconnected factors including the underproduction of homes, rapid population growth, strict land use laws, land prices,
+neighborhood gentrification, interest rates, challenges stemming from the COVID-19 pandemic, and increased construction costs and
+permit fees-have led to a decline in housing affordability and rise in homelessness in many states.   
+
+Oregon, in particular, is experiencing a profound housing crisis
+characterized by an imbalance between the rapidly increasing demand for
+housing, and the availability of affordable housing options. As the
+state’s population grows, particularly in urban centers such as
+Portland, Eugene, and Bend, pressure on the housing market has
+intensified, leading to soaring home prices and rental rates (Ramakrishnan, 2022). As shown in
+@fig-price-increase below, the median sale price increase for homes in Oregon has outpaced the median income growth between 2013 and 2023. 
+This trend has created significant challenges for low- and middle-income families,
+who are increasingly unable to find affordable housing. The severity of
+this issue calls for a comprehensive analysis of the barriers to
+affordable housing and the development of effective strategies to
+address them.  This study aims to explore the barriers to affordable housing in Oregon by analyzing a comprehensive dataset that includes various economic 
+and demographic factors and comparing those to key strategies that are used around the world to tackle housing affordability.   
+
+![Median Home Price Increase Outpaces Median Income in Oregon](images/sale_price_income_increase.png){#fig-price-increase}

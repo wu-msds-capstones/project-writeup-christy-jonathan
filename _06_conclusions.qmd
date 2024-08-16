@@ -1,1 +1,15 @@
+# Limitations
+
+Despite our diligent research efforts, neither investigator possesses expertise in the housing market or legislative policy, which may lead to potential misinterpretations. We have made every effort to present our findings accurately and avoid misrepresentations.
+
+The COVID-19 pandemic significantly impacted the housing market in the latter years of our dataset, complicating the assessment of strategic interventions. Although we observed minor average decrease in production following the implementation of HB 2001, the pandemic's effects might have masked more severe impacts that could have occurred without this legislation. Future re-evaluation of the time series analysis, once additional data becomes available, may provide further insights.
+
 # Conclusions
+
+The objective of this study was to investigate strategies that could potentially address the imbalance between housing demand and the need for affordable housing in Oregon. While the research did not conclusively demonstrate a specific strategy capable of mitigating the housing crisis, several noteworthy findings emerged from the analysis.
+
+Notable inter-county disparities suggest that housing strategies should be tailored to local conditions, incorporating area-specific characteristics to guide decision-making.
+
+A nuanced finding in our research, indicated by the alternating directionality of the correlation between housing unit quantity and median sales price, suggests that increasing housing density may only effectively reduce housing prices when implemented in appropriate locations. The introduction of new housing developments in high-demand areas risks contributing unaffordable units to the market.
+
+This study emphasizes the need for high-quality, comprehensive data collection at the state level, with an emphasis on improved accessibility and public availability. Data collection can be optimized at the local level, where housing construction, purchases, and sales occur. The democratization of this data and the encouragement of its analysis could potentially lead to novel insights and innovative strategies in addressing housing affordability issues.
