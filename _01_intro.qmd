@@ -1,28 +1,27 @@
 # Introduction
 
 The right to housing is recognized worldwide and included in human
-rights legal documents (Wikipedia Contributors, 2019), including the
-Universal Declaration of Human Rights, which the US signed in 1948.
-However, in recent years access to affordable housing has become a major
+rights legal documents, including the
+Universal Declaration of Human Rights, which the US signed in 1948 (Wikipedia Contributors, 2019).
+However, in recent years, access to affordable housing has become a significant
 obstacle to home ownership and affordable rent across the United
 States (Hitting Home: Housing Affordability in the U.S. | Econofact, 2024).
-The National Low Income Housing Coalition reports that the lack of
-affordable housing costs the American economy approximately 2 trillion dollars
+According to the National Low Income Housing Coalition, the lack of
+affordable housing costs the American economy approximately $2 trillion dollars
 annually in lost wages and productivity (NLIHC, 2022).
 
 
-Due to a large number of interconnected factors over the last 20 years
-that include the underproduction of homes, rapid population growth, strict land use laws, land prices,
-neighborhood gentrification, interest rates, numerous unique issues
-caused by the COVID pandemic, and increased construction costs and
-permit fees, many states have seen housing affordability dwindle and
-homelessness grow.  Oregon, in particular, is experiencing a profound housing crisis
+Over the past 20 years, a variety of interconnected factors including the underproduction of homes, rapid population growth, strict land use laws, land prices,
+neighborhood gentrification, interest rates, challenges stemming from the COVID-19 pandemic, and increased construction costs and
+permit fees-have led to a decline in housing affordability and rise in homelessness in many states.   
+
+Oregon, in particular, is experiencing a profound housing crisis
 characterized by an imbalance between the rapidly increasing demand for
 housing, and the availability of affordable housing options. As the
 state’s population grows, particularly in urban centers such as
-Portland, Eugene, and Bend, the pressure on the housing market has
-intensified, leading to soaring home prices and rental rates (Ramakrishnan, 2022). As you can see in
-@fig-price-increase below, the median sale price increase for a home in Oregon has outpaced the median income between 2013 and 2023. 
+Portland, Eugene, and Bend, pressure on the housing market has
+intensified, leading to soaring home prices and rental rates (Ramakrishnan, 2022). As shown in
+@fig-price-increase below, the median sale price increase for homes in Oregon has outpaced the median income growth between 2013 and 2023. 
 This trend has created significant challenges for low- and middle-income families,
 who are increasingly unable to find affordable housing. The severity of
 this issue calls for a comprehensive analysis of the barriers to
