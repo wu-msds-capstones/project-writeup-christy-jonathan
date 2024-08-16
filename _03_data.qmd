@@ -3,12 +3,7 @@
 Our data consist of a table of strategic interventions (that are commonly employed in Oregon and elsewhere in the United States) and a dataset of Oregon county-level housing, demographic, and economic data between January 2013 and December 2022.  Below, we detail how we got the data, how it was cleaned, and how it was stored.  We also document potential biases we have introduced in the collection and processing of this data.
 
 ### Identification of Strategies
-Given the ultimate goal of this project to identify strategies that can help balance demand with the rising cost of housing, 
-we began by conducting a comprehensive review of current strategies addressing housing affordability. This review aimed to 
-identify the fundamental objectives of these strategies, such as increasing housing inventory, stabilizing rental prices, 
-and enhancing accessibility for low-income households.  While all the strategies sought to bring more affordable housing, some of the strategies would do so by
-encouraging more building and thereby increasing the number of housing units.  The result of this review is a list of strategies, their respective goal, and
-the primary category they fall into is detailed in the following table. 
+To align with the overarching objective of this project, which is to identify strategies that effectively balance housing demand with rising costs, we initiated our work with a thorough review of current approaches to addressing housing affordability. This review focused on identifying the core objectives of these strategies, such as expanding housing inventory, stabilizing rental prices, and improving access for low-income households. While all strategies aim to increase affordable housing, some prioritize boosting housing supply by encouraging new construction. The results, including the strategies, goals, and categories, are presented in the following table. 
 
 {{< include _strategies.qmd >}}
 :Strategic Interventions Used in Oregon
@@ -160,14 +155,11 @@ These datasets were imported into temporary tables using an SQL script,
 facilitating the creation of a comprehensive database through joins
 based on county and year.
 
-
-
 The final Entity-Relationship Diagram (ERD) is
 illustrated in the figure below.
 
 
 ![Entity Relationship Diagram](images/data/erd-updated.png){#fig-erd}
-
 
 The capstone redfin and mortgage tables were straight imports from the cleaned CSVs.
 The capstone income_population_housingunits_rent table was created with a series of left joins
@@ -182,7 +174,6 @@ By joining our resulting tables, were able to use this database to create the in
 output to a CSV file, to use for our analysis. The resulting dataset was created by joining the tables seen in the ERD.
 Starting with the redfin table, we joined the mortgage data on date the columns.  The income_population_housingunits_rent
 table was then right joined by year (extracting year from the redfin table date and comparing it to the income_population_housingunits_rent table).
-
 
 
 ### Feature Engineering
