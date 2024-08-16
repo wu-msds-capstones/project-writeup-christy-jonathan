@@ -22,7 +22,7 @@ Our initial goal was to gather individual house sale data for as many years as p
 * Historical land prices: Land price is a crucial factor in determing the ultimate affordability of a house.
 * Construction costs: These costs significantly influence what a builder will charge for a home. 
 * Time to construct a house: This is important for two major reasons: 1) the longer the builder needs to hold on to the land, the more expensive the construction becomes and 2) Faster construction increases housing inventory, which helps meet demand. 
-* Median income for a county: This allows us to asses the affordability of housing or rent payments over time.
+* Median income for a county: This allows us to assess the affordability of housing or rent payments over time.
 * Number of housing units: This provides an indication of housing availability and its relationship to median sale prices in an area.
 
 
